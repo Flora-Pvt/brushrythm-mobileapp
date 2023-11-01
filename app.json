@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ee41ec64-cb17-4a2e-9c76-98655ed76290"
+      }
+    },
+    "owner": "flora-pvt"
   }
 }
