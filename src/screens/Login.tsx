@@ -1,26 +1,18 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { View, TextInput, Pressable, Text } from 'react-native'
+import { useTranslation } from 'react-i18next'
 
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
-interface LoginState {
-  name: string
-  email: string
-  password: string
-}
+export const Login = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'login' })
 
-export class Login extends Component<{}, LoginState> {
-  constructor(props) {
-    super(props)
+  const [user, setUser] = useState({ name: '', email: '', password: '' })
 
-    this.onSignin = this.onSignin.bind(this)
-  }
-
-  onSignin = () => {
+  const onSignin = () => {
     const auth = getAuth()
-    const { name, email, password } = this.state
 
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, user.email, user.password)
       .then((result) => {
         console.log(result.user)
       })
@@ -29,28 +21,26 @@ export class Login extends Component<{}, LoginState> {
       })
   }
 
-  render() {
-    return (
-      <View>
-        <TextInput
-          placeholder="Name"
-          onChangeText={(name) => this.setState({ name })}
-        />
-        <TextInput
-          placeholder="Email"
-          onChangeText={(email) => this.setState({ email })}
-        />
-        <TextInput
-          placeholder="Password"
-          secureTextEntry={true}
-          onChangeText={(password) => this.setState({ password })}
-        />
-        <Pressable onPress={this.onSignin}>
-          <Text>Sign In</Text>
-        </Pressable>
-      </View>
-    )
-  }
+  return (
+    <View>
+      <TextInput
+        placeholder={t('name', { keyPrefix: 'common' })}
+        onChangeText={(name) => setUser({ ...user, name })}
+      />
+      <TextInput
+        placeholder={t('email', { keyPrefix: 'common' })}
+        onChangeText={(email) => setUser({ ...user, email })}
+      />
+      <TextInput
+        placeholder={t('password', { keyPrefix: 'common' })}
+        secureTextEntry={true}
+        onChangeText={(password) => setUser({ ...user, password })}
+      />
+      <Pressable onPress={onSignin}>
+        <Text>{t('signin')}</Text>
+      </Pressable>
+    </View>
+  )
 }
 
 export default Login

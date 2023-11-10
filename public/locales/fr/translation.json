@@ -1,0 +1,25 @@
+{
+  "translation": {
+    "app": {
+      "signin-create-account": "Connectez-vous ou créez un compte"
+    },
+
+    "login": {
+      "signin": "Connectez-vous"
+    },
+
+    "signup": {
+      "create-account": "Créer un compte"
+    },
+
+    "common": {
+      "loading": "Chargement",
+
+      "age": "Âge",
+      "name": "Nom",
+      "username": "Nom d'utilisateur",
+      "email": "Email",
+      "password": "Mot de passe"
+    }
+  }
+}

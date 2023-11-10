@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text } from 'react-native'
 
 import { NavigationContainer } from '@react-navigation/native'
@@ -9,77 +9,63 @@ import SignupScreen from './src/screens/Signup'
 import './firebaseConfig.ts'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
+import './i18n.ts'
+import { useTranslation } from 'react-i18next'
+
 const Stack = createNativeStackNavigator()
 
-interface AppState {
-  loaded: boolean
-  loggedIn: boolean
-}
+const App = () => {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-export class App extends Component<{}, AppState> {
-  constructor(props) {
-    super(props)
+  const { t } = useTranslation('translation', { keyPrefix: 'app' })
 
-    this.state = {
-      loaded: false,
-      loggedIn: false,
-    }
-  }
-
-  componentDidMount(): void {
+  useEffect(() => {
     const auth = getAuth()
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        this.setState({
-          loaded: true,
-          loggedIn: true,
-        })
+        setIsLoaded(true)
+        setIsLoggedIn(true)
       } else {
-        this.setState({
-          loaded: true,
-          loggedIn: false,
-        })
+        setIsLoaded(true)
+        setIsLoggedIn(false)
       }
     })
-  }
+  }, [])
 
-  render() {
-    const { loggedIn, loaded } = this.state
-
-    if (!loaded) {
-      return (
-        <View>
-          <Text>Loading</Text>
-        </View>
-      )
-    }
-
-    if (!loggedIn) {
-      return (
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login">
-            <Stack.Screen
-              name="Login"
-              component={LoginScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Signup"
-              component={SignupScreen}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      )
-    }
-
+  if (!isLoaded) {
     return (
       <View>
-        <Text>Sign in or create an account</Text>
+        <Text>{t('Loading', { keyPrefix: 'common' })}</Text>
       </View>
     )
   }
+
+  if (!isLoggedIn) {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Signup"
+            component={SignupScreen}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
+  }
+
+  return (
+    <View>
+      <Text>{t('signin-create-account')}</Text>
+    </View>
+  )
 }
 
 export default App
