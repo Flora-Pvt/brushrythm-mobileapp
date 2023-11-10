@@ -45,7 +45,7 @@ const App = () => {
   if (!isLoggedIn) {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Signup">
           <Stack.Screen
             name="Login"
             component={LoginScreen}

@@ -3,6 +3,7 @@ import { View, TextInput, Pressable, Text } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getFirestore, collection, doc, setDoc } from 'firebase/firestore'
 
 export const Signup = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'signup' })
@@ -17,10 +18,13 @@ export const Signup = () => {
 
   const onSignup = () => {
     const auth = getAuth()
+    const db = getFirestore()
 
     createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
-      .then((result) => {
-        console.log(result.user)
+      .then(async () => {
+        const usersCol = collection(db, 'users')
+        const newUserRef = doc(usersCol, auth.currentUser.uid)
+        await setDoc(newUserRef, newUser)
       })
       .catch((error) => {
         console.log(error)
