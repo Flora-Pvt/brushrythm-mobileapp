@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text } from 'react-native'
+import { Provider } from 'react-redux'
+import store from './src/store'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import LoginScreen from './src/screens/Login'
 import SignupScreen from './src/screens/Signup'
+import HomeScreen from './src/screens/Home'
 
 import './firebaseConfig.ts'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
@@ -62,9 +65,9 @@ const App = () => {
   }
 
   return (
-    <View>
-      <Text>{t('signin-create-account')}</Text>
-    </View>
+    <Provider store={store}>
+      <HomeScreen></HomeScreen>
+    </Provider>
   )
 }
 
