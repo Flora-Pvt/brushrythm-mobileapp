@@ -49,7 +49,7 @@ export const userSlice = createSlice({
 })
 
 export const selectUser = (state) => state.user.value
-export const selectUserStatus = (state) => state.user.status
-export const selectUserError = (state) => state.user.error
+// export const selectUserStatus = (state) => state.user.status
+// export const selectUserError = (state) => state.user.error
 
 export default userSlice.reducer
