@@ -14,22 +14,22 @@ export default function BottomTab() {
     {
       name: 'Home',
       component: HomeScreen,
-      imageSrc: require('../../public/images/bottom-tab/draw.svg'),
+      imageSrc: require('../assets/images/bottom-tab/draw.svg'),
     },
     {
       name: 'Quests',
       component: QuestsScreen,
-      imageSrc: require('../../public/images/bottom-tab/trophy.svg'),
+      imageSrc: require('../assets/images/bottom-tab/trophy.svg'),
     },
     {
       name: 'Gallery',
       component: GalleryScreen,
-      imageSrc: require('../../public/images/bottom-tab/gallery.svg'),
+      imageSrc: require('../assets/images/bottom-tab/gallery.svg'),
     },
     {
       name: 'Settings',
       component: SettingsScreen,
-      imageSrc: require('../../public/images/bottom-tab/settings.svg'),
+      imageSrc: require('../assets/images/bottom-tab/settings.svg'),
     },
   ]
 
