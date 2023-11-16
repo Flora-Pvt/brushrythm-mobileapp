@@ -7,6 +7,8 @@ import QuestsScreen from '../screens/Quests'
 import GalleryScreen from '../screens/Gallery'
 import SettingsScreen from '../screens/Settings'
 
+import { COLORS } from '../utils/constants'
+
 export default function BottomTab() {
   const Tab = createBottomTabNavigator()
 
@@ -37,9 +39,10 @@ export default function BottomTab() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: '#FAFBF9',
+        tabBarActiveTintColor: COLORS.white,
+        tabBarInactiveTintColor: COLORS.secondaryLighter,
         tabBarStyle: {
-          backgroundColor: '#272C2B',
+          backgroundColor: COLORS.secondary,
           opacity: 80,
           height: 70,
         },
