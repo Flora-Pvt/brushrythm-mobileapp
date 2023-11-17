@@ -14,6 +14,19 @@ module.exports = function (api) {
           verbose: false,
         },
       ],
+      [
+        'module-resolver',
+        {
+          root: ['./src'],
+          extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
+          alias: {
+            utils: './src/utils',
+            components: './src/components',
+            screens: './src/screens',
+            layouts: './src/layouts',
+          },
+        },
+      ],
     ],
   }
 }

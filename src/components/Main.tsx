@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ThunkDispatch } from '@reduxjs/toolkit'
 import { selectUser, fetchUser } from '../store/features/userSlice'
 
-import BottomTab from '../layouts/BottomTab'
+import BottomTab from 'layouts/BottomTab'
 
 export default function Home() {
   const { t } = useTranslation('translation')

@@ -1,13 +1,13 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Image } from 'react-native'
 
-import HomeScreen from '../screens/Home'
-import QuestsScreen from '../screens/Quests'
-import GalleryScreen from '../screens/Gallery'
-import SettingsScreen from '../screens/Settings'
+import HomeScreen from 'screens/Home'
+import QuestsScreen from 'screens/Quests'
+import GalleryScreen from 'screens/Gallery'
+import SettingsScreen from 'screens/Settings'
 
-import { COLORS } from '../utils/constants'
+import { COLORS } from 'utils/constants'
+import { Draw, Trophy, Gallery, Settings } from 'utils/svg-images'
 
 export default function BottomTab() {
   const Tab = createBottomTabNavigator()
@@ -16,22 +16,22 @@ export default function BottomTab() {
     {
       name: 'Home',
       component: HomeScreen,
-      imageSrc: require('../assets/images/bottom-tab/draw.svg'),
+      icon: Draw,
     },
     {
       name: 'Quests',
       component: QuestsScreen,
-      imageSrc: require('../assets/images/bottom-tab/trophy.svg'),
+      icon: Trophy,
     },
     {
       name: 'Gallery',
       component: GalleryScreen,
-      imageSrc: require('../assets/images/bottom-tab/gallery.svg'),
+      icon: Gallery,
     },
     {
       name: 'Settings',
       component: SettingsScreen,
-      imageSrc: require('../assets/images/bottom-tab/settings.svg'),
+      icon: Settings,
     },
   ]
 
@@ -56,11 +56,7 @@ export default function BottomTab() {
           options={{
             tabBarShowLabel: false,
             tabBarIcon: ({ color }) => (
-              <Image
-                source={tab.imageSrc}
-                style={{ width: 32, height: 32 }}
-                tintColor={color}
-              />
+              <tab.icon size={32} color={color}></tab.icon>
             ),
           }}
         />

@@ -1,5 +1,10 @@
 import React from 'react'
+import { View, Text } from 'react-native'
 
 export default function Quests() {
-  return <div>Quests</div>
+  return (
+    <View>
+      <Text>Quests</Text>
+    </View>
+  )
 }
