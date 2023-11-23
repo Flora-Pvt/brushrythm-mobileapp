@@ -1,10 +1,12 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { StyleSheet } from 'react-native'
 
 import HomeScreen from 'screens/Home'
 import QuestsScreen from 'screens/Quests'
 import GalleryScreen from 'screens/Gallery'
 import SettingsScreen from 'screens/Settings'
+import Header from 'layouts/Header'
 
 import { COLORS } from 'utils/constants'
 import { Draw, Trophy, Gallery, Settings } from 'utils/svg-images'
@@ -41,11 +43,7 @@ export default function BottomTab() {
       screenOptions={{
         tabBarActiveTintColor: COLORS.white,
         tabBarInactiveTintColor: COLORS.secondaryLighter,
-        tabBarStyle: {
-          backgroundColor: COLORS.secondary,
-          opacity: 80,
-          height: 70,
-        },
+        tabBarStyle: styles.tabBar,
       }}
     >
       {tabList.map((tab, tabIndex) => (
@@ -54,13 +52,25 @@ export default function BottomTab() {
           name={tab.name}
           component={tab.component}
           options={{
+            headerStyle: styles.header,
+            headerTitle: () => <Header />,
             tabBarShowLabel: false,
-            tabBarIcon: ({ color }) => (
-              <tab.icon size={32} color={color}></tab.icon>
-            ),
+            tabBarIcon: ({ color }) => <tab.icon color={color}></tab.icon>,
           }}
         />
       ))}
     </Tab.Navigator>
   )
 }
+
+const styles = StyleSheet.create({
+  tabBar: {
+    backgroundColor: COLORS.secondary,
+    opacity: 80,
+    height: 70,
+  },
+
+  header: {
+    backgroundColor: COLORS.primaryDark,
+  },
+})
