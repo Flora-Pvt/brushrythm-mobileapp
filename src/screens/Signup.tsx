@@ -9,11 +9,21 @@ export const Signup = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'signup' })
 
   const [newUser, setNewUser] = useState({
-    age: '',
+    age: 0,
     name: '',
     username: '',
     email: '',
     password: '',
+    streak: 0,
+    experience: 0,
+    league: 0,
+    items: {
+      gems: 5,
+      cheatBreaks: 1,
+      morningBonus: false,
+      eveningBonus: false,
+      purchasedBonuses: 0,
+    },
   })
 
   const onSignup = () => {
@@ -32,12 +42,12 @@ export const Signup = () => {
   }
 
   return (
-    <View>
+    <View style={{ padding: 80 }}>
       <TextInput
         placeholder={t('age', { keyPrefix: 'common' })}
         inputMode="numeric"
-        maxLength={3}
-        onChangeText={(age) => setNewUser({ ...newUser, age })}
+        maxLength={2}
+        onChangeText={(age) => setNewUser({ ...newUser, age: Number(age) })}
       />
       <TextInput
         placeholder={t('name', { keyPrefix: 'common' })}
