@@ -12,6 +12,11 @@
       "create-account": "Create account"
     },
 
+    "quests": {
+      "month-quests": "{{month}} quests",
+      "complete": "Complete {{questsLeft}} quests"
+    },
+
     "common": {
       "loading": "Loading",
 

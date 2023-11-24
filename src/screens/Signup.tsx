@@ -24,6 +24,10 @@ export const Signup = () => {
       eveningBonus: false,
       purchasedBonuses: 0,
     },
+    quests: {
+      completed: 0,
+      month: 0,
+    },
   })
 
   const onSignup = () => {

@@ -12,6 +12,11 @@
       "create-account": "Créer un compte"
     },
 
+    "quests": {
+      "month-quests": "Quêtes de {{month}}",
+      "complete": "Complète {{questsLeft}} quêtes"
+    },
+
     "common": {
       "loading": "Chargement",
 

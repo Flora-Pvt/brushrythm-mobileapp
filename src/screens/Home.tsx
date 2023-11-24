@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { ScrollView, View, StyleSheet } from 'react-native'
 
 import { useSelector } from 'react-redux'
 import { selectUser } from '../store/features/userSlice'
@@ -14,40 +14,42 @@ export default function Home() {
   console.log(user)
 
   return (
-    <View style={styles.mainContainer}>
-      <VerticalConnector style={styles.firstVerticalConnector} />
+    <ScrollView>
+      <View style={styles.mainContainer}>
+        <VerticalConnector style={styles.firstVerticalConnector} />
 
-      <View style={styles.lineContainer}>
-        {/* <Text>{user?.streak || 0}</Text> */}
-        <View style={styles.stepsLine}>
-          <Step />
-          <HorizontalConnector />
-          <Step />
+        <View style={styles.lineContainer}>
+          {/* <Text>{user?.streak || 0}</Text> */}
+          <View style={styles.stepsLine}>
+            <Step />
+            <HorizontalConnector />
+            <Step />
+          </View>
+
+          <View style={styles.stepsLine}>
+            <Step />
+            <HorizontalConnector />
+            <Step />
+          </View>
+
+          <View style={styles.stepsLine}>
+            <Step />
+            <HorizontalConnector />
+            <Step />
+          </View>
+
+          <View style={styles.stepsLine}>
+            <Step />
+            <HorizontalConnector style={styles.lastHorizontalConnector} />
+          </View>
         </View>
 
-        <View style={styles.stepsLine}>
-          <Step />
-          <HorizontalConnector />
-          <Step />
-        </View>
-
-        <View style={styles.stepsLine}>
-          <Step />
-          <HorizontalConnector />
-          <Step />
-        </View>
-
-        <View style={styles.stepsLine}>
-          <Step />
-          <HorizontalConnector style={styles.lastHorizontalConnector} />
+        <View>
+          <VerticalConnector style={styles.secondVerticalConnector} />
+          <VerticalConnector style={styles.thirdVerticalConnector} />
         </View>
       </View>
-
-      <View>
-        <VerticalConnector style={styles.secondVerticalConnector} />
-        <VerticalConnector style={styles.thirdVerticalConnector} />
-      </View>
-    </View>
+    </ScrollView>
   )
 }
 

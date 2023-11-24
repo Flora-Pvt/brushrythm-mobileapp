@@ -12,7 +12,7 @@ import MainComponent from './src/components/Main'
 import './firebaseConfig.ts'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
-import './i18n.ts'
+import './src/utils/i18n'
 import { useTranslation } from 'react-i18next'
 
 const Stack = createNativeStackNavigator()

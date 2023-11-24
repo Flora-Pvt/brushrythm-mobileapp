@@ -19,27 +19,31 @@ export default function BottomTab() {
       name: 'Home',
       component: HomeScreen,
       icon: Draw,
+      header: true,
     },
     {
       name: 'Quests',
       component: QuestsScreen,
       icon: Trophy,
+      header: false,
     },
     {
       name: 'Gallery',
       component: GalleryScreen,
       icon: Gallery,
+      header: false,
     },
     {
       name: 'Settings',
       component: SettingsScreen,
       icon: Settings,
+      header: false,
     },
   ]
 
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Quests"
       sceneContainerStyle={styles.scene}
       screenOptions={{
         tabBarActiveTintColor: COLORS.white,
@@ -53,6 +57,7 @@ export default function BottomTab() {
           name={tab.name}
           component={tab.component}
           options={{
+            headerShown: tab.header,
             headerTitleAlign: 'left',
             headerStyle: styles.header,
             headerTitle: () => <Header />,
