@@ -5,16 +5,15 @@ import { useTranslation } from 'react-i18next'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { ThunkDispatch } from '@reduxjs/toolkit'
-import { selectUser, fetchUser } from '../store/features/userSlice'
+import { fetchUser } from '../store/features/userSlice'
 
-import BottomTab from 'layouts/BottomTab'
+import Navigator from 'layouts/Navigator'
 
 export default function Home() {
   const { t } = useTranslation('translation')
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 
-  const user = useSelector(selectUser)
   const userStatus = useSelector(
     (state: { user: { status } }) => state.user.status
   )
@@ -26,8 +25,6 @@ export default function Home() {
     }
   }, [userStatus, dispatch])
 
-  console.log(user)
-
   let content
   switch (userStatus) {
     case 'loading':
@@ -38,7 +35,7 @@ export default function Home() {
       )
       break
     case 'succeeded':
-      content = <BottomTab></BottomTab>
+      content = <Navigator></Navigator>
       break
     case 'failed':
       content = (

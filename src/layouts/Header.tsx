@@ -15,20 +15,20 @@ export default function Header() {
 
   return (
     <View style={styles.header}>
-      <AppText style={styles.userInfo}>
+      <View style={styles.userInfo}>
         <ComicBubble color={iconsColor} />
-        <Text>{user?.experience || 0} XP</Text>
-      </AppText>
+        <AppText>{user?.experience || 0} XP</AppText>
+      </View>
 
-      <AppText style={styles.userInfo}>
+      <View style={styles.userInfo}>
         <Infinite color={iconsColor} />
-        {user?.streak || 0}
-      </AppText>
+        <AppText> {user?.streak || 0}</AppText>
+      </View>
 
-      <AppText style={styles.userInfo}>
+      <View style={styles.userInfo}>
         <Gem color={iconsColor} />
-        {user?.gems || 0}
-      </AppText>
+        <AppText>{user?.gems || 0}</AppText>
+      </View>
     </View>
   )
 }
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     gap: 32,
   },
   userInfo: {
-    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
   },

@@ -8,13 +8,10 @@ export default function AppText(props) {
     Inter_500Medium,
   })
 
-  if (!fontsLoaded) {
-    console.log('font not loaded')
-    return
-  }
+  if (!fontsLoaded) return
 
   return (
-    <Text style={{ ...props.style, ...styles.text }}>{props.children}</Text>
+    <Text style={{ ...styles.text, ...props.style }}>{props.children}</Text>
   )
 }
 
@@ -22,6 +19,6 @@ const styles = StyleSheet.create({
   text: {
     color: COLORS.secondary,
     fontFamily: 'Inter_500Medium',
-    fontSize: 16,
+    fontSize: 14,
   },
 })
