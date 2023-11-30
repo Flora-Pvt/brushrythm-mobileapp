@@ -71,7 +71,7 @@ export const Signup = () => {
         onChangeText={(password) => setNewUser({ ...newUser, password })}
       />
       <Pressable onPress={onSignup}>
-        <Text>{t('create-account')}</Text>
+        <Text>{t('createAccount')}</Text>
       </Pressable>
     </View>
   )

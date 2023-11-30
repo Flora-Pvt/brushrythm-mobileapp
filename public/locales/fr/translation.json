@@ -1,7 +1,7 @@
 {
   "translation": {
     "app": {
-      "signin-create-account": "Connectez-vous ou créez un compte"
+      "signinCreateAccount": "Connectez-vous ou créez un compte"
     },
 
     "login": {
@@ -9,12 +9,19 @@
     },
 
     "signup": {
-      "create-account": "Créer un compte"
+      "createAccount": "Créer un compte"
     },
 
     "quests": {
-      "month-quests": "Quêtes de {{month}}",
-      "complete": "Complète {{questsLeft}} quêtes"
+      "monthQuests": "Quêtes de {{month}}",
+      "complete": "Complète {{count}} quête",
+      "complete_plural": "Complète {{count}} quêtes",
+      "dailyQuests": "Quêtes du jour",
+      "completeDrawing": "Termine {{count}} dessin après 10:00 pm",
+      "completeDrawing_plural": "Termine {{count}} dessins après 10:00 pm",
+      "earnXp": "Gagne {{count}} XP",
+      "reachStreak": "Réalise une série de {{count}} jour",
+      "reachStreak_plural": "Réalise une série de {{count}} jours"
     },
 
     "common": {
