@@ -24,6 +24,16 @@
       "reachStreak_plural": "Réalise une série de {{count}} jours"
     },
 
+    "store": {
+      "bonuses": "Bonus",
+      "earlyBirdBonus": "Bonus lève-tôt",
+      "nightOwlBonus": "Bonus couche-tard",
+      "xpBonus": "Bonus d'XP",
+
+      "breaks": "Pause",
+      "streakBreaks": "Pause de série"
+    },
+
     "common": {
       "loading": "Chargement",
 

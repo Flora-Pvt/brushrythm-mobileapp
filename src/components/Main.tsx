@@ -9,7 +9,7 @@ import { fetchUser } from '../store/features/userSlice'
 
 import Navigator from 'layouts/Navigator'
 
-export default function Home() {
+export default function Home({ navigation }) {
   const { t } = useTranslation('translation')
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
@@ -35,7 +35,7 @@ export default function Home() {
       )
       break
     case 'succeeded':
-      content = <Navigator></Navigator>
+      content = <Navigator navigation={navigation}></Navigator>
       break
     case 'failed':
       content = (

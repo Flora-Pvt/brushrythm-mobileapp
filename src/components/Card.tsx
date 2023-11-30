@@ -15,7 +15,9 @@ export default function Card(props) {
 
       <View style={styles.textContainer}>
         <AppText style={styles.title}>{props.title}</AppText>
-        <AppText style={styles.description}>{props.description}</AppText>
+        {props.description && (
+          <AppText style={styles.description}>{props.description}</AppText>
+        )}
       </View>
 
       <View style={styles.imageContainer}>
@@ -46,10 +48,11 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
     paddingHorizontal: 18,
+    justifyContent: 'center',
   },
   title: {
     color: COLORS.white,
-    fontSize: 20,
+    fontSize: 19,
     marginBottom: 5,
   },
   description: {

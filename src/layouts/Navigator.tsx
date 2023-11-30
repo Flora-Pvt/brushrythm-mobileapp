@@ -11,7 +11,7 @@ import SettingsScreen from 'screens/Settings'
 import { COLORS } from 'utils/constants'
 import { Draw, Trophy, Gallery, Settings } from 'utils/svg-images'
 
-export default function BottomTab() {
+export default function Navigator({ navigation }) {
   const Tab = createBottomTabNavigator()
 
   const tabList = [
@@ -43,7 +43,7 @@ export default function BottomTab() {
 
   return (
     <Tab.Navigator
-      initialRouteName="Quests"
+      initialRouteName="Home"
       sceneContainerStyle={styles.scene}
       screenOptions={{
         tabBarActiveTintColor: COLORS.white,
@@ -60,7 +60,7 @@ export default function BottomTab() {
             headerShown: tab.header,
             headerTitleAlign: 'left',
             headerStyle: styles.header,
-            headerTitle: () => <Header />,
+            headerTitle: () => <Header navigation={navigation} />,
             tabBarShowLabel: false,
             tabBarIcon: ({ color }) => <tab.icon color={color}></tab.icon>,
           }}

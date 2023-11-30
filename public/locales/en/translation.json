@@ -23,6 +23,16 @@
       "reachStreak": "Reach a {{count}}-day streak"
     },
 
+    "store": {
+      "bonuses": "Bonuses",
+      "earlyBirdBonus": "Early bird bonus",
+      "nightOwlBonus": "Night owl bonus",
+      "xpBonus": "XP bonus",
+
+      "breaks": "Breaks",
+      "streakBreaks": "Streak breaks"
+    },
+
     "common": {
       "loading": "Loading",
 
