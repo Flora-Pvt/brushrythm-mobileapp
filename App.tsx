@@ -5,10 +5,10 @@ import store from './src/store'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import BottomTabNavigator from 'layouts/BottomTabNavigator'
 import LoginScreen from './src/screens/Login'
 import SignupScreen from './src/screens/Signup'
 import StoreScreen from './src/screens/Store'
-import MainComponent from './src/components/Main'
 
 import './firebaseConfig.ts'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
@@ -70,10 +70,10 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Main">
+        <Stack.Navigator initialRouteName="BottomTabNavigator">
           <Stack.Screen
-            name="Main"
-            component={MainComponent}
+            name="BottomTabNavigator"
+            component={BottomTabNavigator}
             options={{ headerShown: false }}
           />
           <Stack.Screen
