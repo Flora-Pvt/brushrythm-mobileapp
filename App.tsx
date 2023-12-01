@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text } from 'react-native'
 import { Provider } from 'react-redux'
 import store from './src/store'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import BottomTabNavigator from 'layouts/BottomTabNavigator'
 import LoginScreen from './src/screens/Login'
 import SignupScreen from './src/screens/Signup'
-import StoreScreen from './src/screens/Store'
+import MainComponent from './src/components/Main'
 
 import './firebaseConfig.ts'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 import './src/utils/i18n'
 import { useTranslation } from 'react-i18next'
-
-import { COLORS } from 'utils/constants'
 
 const Stack = createNativeStackNavigator()
 
@@ -69,37 +66,9 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="BottomTabNavigator">
-          <Stack.Screen
-            name="BottomTabNavigator"
-            component={BottomTabNavigator}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Store"
-            component={StoreScreen}
-            options={{
-              headerStyle: styles.storeHeader,
-              headerTitleStyle: styles.storeHeaderTitle,
-              headerTintColor: COLORS.white,
-              headerTitleAlign: 'center',
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <MainComponent></MainComponent>
     </Provider>
   )
 }
-
-const styles = StyleSheet.create({
-  storeHeader: {
-    backgroundColor: COLORS.secondaryLight,
-    borderBottomWidth: 0,
-  },
-  storeHeaderTitle: {
-    fontSize: 24,
-  },
-})
 
 export default App
