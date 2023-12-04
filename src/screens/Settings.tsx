@@ -1,22 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ScrollView, View, Text, StyleSheet } from 'react-native'
 import AppInput from 'components/general/AppInput'
 
 import { useSelector } from 'react-redux'
 import { selectUser } from '../store/features/userSlice'
 
+import { useTranslation } from 'react-i18next'
+
 import { COLORS } from 'utils/constants'
 
 export default function Settings() {
-  const user = useSelector(selectUser)
+  const { t } = useTranslation('translation', { keyPrefix: 'signup' })
+
+  const userToChange = useSelector(selectUser)
+
+  const [user, setUser] = useState(userToChange)
 
   const userInitial = user.username.slice(0, 1)
 
-  const inputs = [
-    { label: 'Name', placeholder: '', value: user.name },
-    { label: 'Username', placeholder: '', value: user.username },
-    { label: 'Password', placeholder: '*******', value: '' },
-    { label: 'Email', placeholder: '', value: user.email },
+  const settingsInputs = [
+    {
+      label: t('name', { keyPrefix: 'common' }),
+      value: user.name,
+      key: 'name',
+    },
+    {
+      label: t('username', { keyPrefix: 'common' }),
+      value: user.username,
+      key: 'username',
+    },
+    {
+      label: t('password', { keyPrefix: 'common' }),
+      value: '*******',
+      key: 'password',
+    },
+    {
+      label: t('email', { keyPrefix: 'common' }),
+      value: user.email,
+      key: 'email',
+    },
   ]
 
   return (
@@ -27,12 +49,14 @@ export default function Settings() {
         </View>
 
         <View style={styles.inputContainer}>
-          {inputs.map((settingInput, inputIndex) => (
+          {settingsInputs.map((settingInput, inputIndex) => (
             <AppInput
               key={`setting-input-${inputIndex}`}
               label={settingInput.label}
-              placeholder={settingInput.placeholder}
               value={settingInput.value}
+              onChangeText={(newVal) =>
+                setUser({ ...user, [settingInput.key]: newVal })
+              }
             />
           ))}
         </View>

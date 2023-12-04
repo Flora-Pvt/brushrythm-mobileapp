@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, TextInput, StyleSheet } from 'react-native'
 import AppText from './AppText'
 
@@ -6,9 +6,24 @@ import { useFonts, Inter_400Regular } from '@expo-google-fonts/inter'
 
 import { COLORS } from 'utils/constants'
 
-export default function AppInput({ label = 'label', placeholder, value }) {
-  const [inputValue, setInputValue] = useState(value)
+type InputModeOptions =
+  | 'none'
+  | 'text'
+  | 'decimal'
+  | 'numeric'
+  | 'tel'
+  | 'search'
+  | 'email'
+  | 'url'
 
+export default function AppInput({
+  label = 'label',
+  placeholder = '',
+  inputMode = 'text' as InputModeOptions,
+  maxLength = null,
+  value,
+  onChangeText = (text) => {},
+}) {
   const [fontsLoaded] = useFonts({ Inter_400Regular })
   if (!fontsLoaded) return
 
@@ -18,8 +33,11 @@ export default function AppInput({ label = 'label', placeholder, value }) {
       <TextInput
         style={styles.input}
         placeholder={placeholder}
-        value={inputValue}
-        onChangeText={(text) => setInputValue(text)}
+        placeholderTextColor={COLORS.grey}
+        inputMode={inputMode}
+        maxLength={maxLength}
+        value={value}
+        onChangeText={onChangeText}
       />
     </View>
   )

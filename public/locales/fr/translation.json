@@ -9,7 +9,8 @@
     },
 
     "signup": {
-      "createAccount": "Créer un compte"
+      "createAccount": "Créer un compte",
+      "alreadyAccount": "Déjà un compte ? Connectez-vous"
     },
 
     "quests": {
