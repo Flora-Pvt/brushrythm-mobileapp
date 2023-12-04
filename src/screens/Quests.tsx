@@ -1,8 +1,8 @@
 import React from 'react'
 import { ScrollView, View, StyleSheet } from 'react-native'
-import AppText from 'components/AppText'
-import Card from 'components/Card'
-import QuestsProgression from 'components/QuestsProgression'
+import AppText from 'components/general/AppText'
+import Card from 'components/general/Card'
+import QuestsProgression from 'components/quests/QuestsProgression'
 
 import { useTranslation } from 'react-i18next'
 

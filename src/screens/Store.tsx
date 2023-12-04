@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import AppText from 'components/AppText'
-import Card from 'components/Card'
+import AppText from 'components/general/AppText'
+import Card from 'components/general/Card'
 
 import { useTranslation } from 'react-i18next'
 

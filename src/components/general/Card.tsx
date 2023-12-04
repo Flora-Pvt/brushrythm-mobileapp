@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     height: 64,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 100,
+    borderRadius: 64 / 2,
   },
 
   textContainer: {

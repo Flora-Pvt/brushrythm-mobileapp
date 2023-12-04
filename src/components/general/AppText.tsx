@@ -4,9 +4,7 @@ import { COLORS } from 'utils/constants'
 import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter'
 
 export default function AppText(props) {
-  const [fontsLoaded] = useFonts({
-    Inter_500Medium,
-  })
+  const [fontsLoaded] = useFonts({ Inter_500Medium })
 
   if (!fontsLoaded) return
 

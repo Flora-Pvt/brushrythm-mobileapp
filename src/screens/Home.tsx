@@ -4,8 +4,8 @@ import { ScrollView, View, StyleSheet } from 'react-native'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../store/features/userSlice'
 
-import Step from 'components/Step'
-import HorizontalConnector from 'components/HorizontalConnector'
+import Step from 'components/home/Step'
+import HorizontalConnector from 'components/home/HorizontalConnector'
 import { VerticalConnector } from 'utils/svg-images'
 
 export default function Home() {

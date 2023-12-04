@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import AppText from 'components/AppText'
+import AppText from 'components/general/AppText'
 
 import { useTranslation } from 'react-i18next'
 
@@ -8,7 +8,7 @@ import { endOfMonth, getDaysInMonth } from 'date-fns'
 import { formatDate, formatDateDistance } from 'utils/date-fns-format'
 
 import { useSelector } from 'react-redux'
-import { selectUser } from '../store/features/userSlice'
+import { selectUser } from '../../store/features/userSlice'
 
 import { COLORS } from 'utils/constants'
 import { Clock, Trophy } from 'utils/svg-images'

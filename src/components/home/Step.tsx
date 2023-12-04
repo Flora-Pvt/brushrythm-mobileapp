@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   step: {
     height: 64,
     width: 64,
-    borderRadius: 100,
+    borderRadius: 64 / 2,
     backgroundColor: COLORS.primary,
   },
 })

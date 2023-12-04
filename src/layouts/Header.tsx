@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native'
-import AppText from 'components/AppText'
+import AppText from 'components/general/AppText'
 
 import { useSelector } from 'react-redux'
 import { selectUser } from '../store/features/userSlice'
