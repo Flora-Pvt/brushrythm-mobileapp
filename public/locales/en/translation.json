@@ -5,7 +5,8 @@
     },
 
     "login": {
-      "signin": "Sign in"
+      "signin": "Sign in",
+      "noAccountYet": "No account yet? Signup"
     },
 
     "signup": {
@@ -25,6 +26,8 @@
     },
 
     "store": {
+      "store": "Store",
+
       "bonuses": "Bonuses",
       "earlyBirdBonus": "Early bird bonus",
       "nightOwlBonus": "Night owl bonus",

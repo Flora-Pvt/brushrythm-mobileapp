@@ -5,7 +5,8 @@
     },
 
     "login": {
-      "signin": "Connectez-vous"
+      "signin": "Connectez-vous",
+      "noAccountYet": "Pas encore de compte ? Créez un compte"
     },
 
     "signup": {
@@ -26,6 +27,8 @@
     },
 
     "store": {
+      "store": "Boutique",
+
       "bonuses": "Bonus",
       "earlyBirdBonus": "Bonus lève-tôt",
       "nightOwlBonus": "Bonus couche-tard",
