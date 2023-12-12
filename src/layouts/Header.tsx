@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native'
+import { View, Pressable, StyleSheet } from 'react-native'
 import AppText from 'components/general/AppText'
 
 import { useSelector } from 'react-redux'
-import { selectUser } from '../store/features/userSlice'
+import { selectUser } from 'features/user/userSlice'
 
 import { COLORS } from 'utils/constants'
 import { ComicBubble, Infinite, Gem } from 'utils/svg-images'
@@ -25,12 +25,12 @@ export default function Header({ navigation }) {
         <AppText> {user?.streak || 0}</AppText>
       </View>
 
-      <TouchableWithoutFeedback onPress={() => navigation.navigate('Store')}>
+      <Pressable onPress={() => navigation.navigate('Store')}>
         <View style={styles.userInfo}>
           <Gem color={iconsColor} />
           <AppText>{user?.gems || 0}</AppText>
         </View>
-      </TouchableWithoutFeedback>
+      </Pressable>
     </View>
   )
 }

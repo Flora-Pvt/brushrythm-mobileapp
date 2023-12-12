@@ -27,7 +27,7 @@
     },
 
     "store": {
-      "store": "Boutique",
+      "title": "Boutique",
 
       "bonuses": "Bonus",
       "earlyBirdBonus": "Bonus lève-tôt",
@@ -39,7 +39,7 @@
     },
 
     "common": {
-      "loading": "Chargement",
+      "loading": "Chargement...",
 
       "age": "Âge",
       "name": "Nom",

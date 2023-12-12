@@ -8,7 +8,7 @@ import { endOfMonth, getDaysInMonth } from 'date-fns'
 import { formatDate, formatDateDistance } from 'utils/date-fns-format'
 
 import { useSelector } from 'react-redux'
-import { selectUser } from '../../store/features/userSlice'
+import { selectUser } from 'features/user/userSlice'
 
 import { COLORS } from 'utils/constants'
 import { Clock, Trophy } from 'utils/svg-images'

@@ -1,38 +1,59 @@
+import axios from 'axios'
+
 import React, { useState } from 'react'
 import { View, Pressable, StyleSheet } from 'react-native'
 import AppText from 'components/general/AppText'
 import AppInput from 'components/general/AppInput'
-import { COLORS } from 'utils/constants'
 
 import { useTranslation } from 'react-i18next'
 
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { useDispatch } from 'react-redux'
+import { ThunkDispatch } from '@reduxjs/toolkit'
+import { logUser } from 'features/user/userSlice'
 
-export const Login = ({ navigation }) => {
+import { storeStringData } from 'utils/async-storage'
+import { COLORS } from 'utils/constants'
+
+export const Login = ({ navigation, setIsLoggedIn = (state) => {} }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'login' })
 
-  const [user, setUser] = useState({ name: '', email: '', password: '' })
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
+
+  const [loginCredentials, setLoginCredentials] = useState({
+    name: '',
+    email: '',
+    password: '',
+  })
 
   const loginInputs = [
     {
       label: t('email', { keyPrefix: 'common' }),
       inputMode: 'email',
-      value: user.email,
+      value: loginCredentials.email,
       key: 'email',
     },
     {
       label: t('password', { keyPrefix: 'common' }),
-      value: user.password,
+      value: loginCredentials.password,
       key: 'password',
     },
   ]
 
-  const onSignin = () => {
-    const auth = getAuth()
+  const onSignin = async (event, { email, password }) => {
+    event.preventDefault()
 
-    signInWithEmailAndPassword(auth, user.email, user.password)
-      .then((result) => console.log(result.user))
-      .catch((error) => console.log(error))
+    // TODO: Check if valid email and strong password
+    // TODO: UI feedback if not valid
+    if (!email || !password) return
+
+    const response = await axios.post('/users/login', { email, password })
+    const result = response.data
+
+    storeStringData('userId', result.id)
+    storeStringData('token', result.token)
+
+    dispatch(logUser(result.id, result.token))
+    setIsLoggedIn(true)
   }
 
   return (
@@ -44,13 +65,19 @@ export const Login = ({ navigation }) => {
             label={loginInput.label}
             value={loginInput.value}
             onChangeText={(newVal) =>
-              setUser({ ...user, [loginInput.key]: newVal })
+              setLoginCredentials({
+                ...loginCredentials,
+                [loginInput.key]: newVal,
+              })
             }
           />
         ))}
       </View>
 
-      <Pressable style={styles.button} onPress={onSignin}>
+      <Pressable
+        style={styles.button}
+        onPress={(e) => onSignin(e, loginCredentials)}
+      >
         <AppText>{t('signin')}</AppText>
       </Pressable>
 

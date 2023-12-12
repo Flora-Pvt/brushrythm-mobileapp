@@ -2,7 +2,7 @@ import React from 'react'
 import { ScrollView, View, StyleSheet } from 'react-native'
 
 import { useSelector } from 'react-redux'
-import { selectUser } from '../store/features/userSlice'
+import { selectUser } from 'features/user/userSlice'
 
 import Step from 'components/home/Step'
 import HorizontalConnector from 'components/home/HorizontalConnector'

@@ -3,7 +3,7 @@ import { ScrollView, View, Text, StyleSheet } from 'react-native'
 import AppInput from 'components/general/AppInput'
 
 import { useSelector } from 'react-redux'
-import { selectUser } from '../store/features/userSlice'
+import { selectUser } from 'features/user/userSlice'
 
 import { useTranslation } from 'react-i18next'
 
