@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { storeStringData } from 'utils/async-storage'
 
 const initialState = {
   value: {},
@@ -7,20 +8,27 @@ const initialState = {
   error: null,
 }
 
-export const logUser = createAsyncThunk('user/logUser', async (id, token) => {
-  if (typeof id !== 'string') {
-    console.log('id invalid')
-    return {}
+export const logUser = createAsyncThunk(
+  'user/logUser',
+  async (credentials: { id; token }) => {
+    const { id, token } = credentials
+
+    if (typeof id !== 'string' && typeof id !== 'number') {
+      console.log('id invalid')
+      return {}
+    }
+
+    storeStringData('userId', id)
+    storeStringData('token', token)
+
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+    const response = await axios.get(`/users/${id}`)
+    const currentUser = response.data[0]
+
+    return currentUser
   }
-
-  const response = await axios.get(`/users/${id}`)
-  const currentUser = response.data[0]
-
-  const headersToken = `Bearer ${token}`
-  axios.defaults.headers.common['Authorization'] = `Bearer ${headersToken}`
-
-  return currentUser
-})
+)
 
 export const userSlice = createSlice({
   name: 'user',

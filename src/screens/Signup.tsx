@@ -1,17 +1,25 @@
+import axios from 'axios'
+
 import React, { useState } from 'react'
 import { ScrollView, View, Pressable, StyleSheet } from 'react-native'
 import AppInput from 'components/general/AppInput'
 import AppText from 'components/general/AppText'
 
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
-import { getFirestore, collection, doc, setDoc } from 'firebase/firestore'
-
 import { useTranslation } from 'react-i18next'
+
+import { useDispatch } from 'react-redux'
+import { ThunkDispatch } from '@reduxjs/toolkit'
+import { logUser } from 'features/user/userSlice'
 
 import { COLORS } from 'utils/constants'
 
-export const Signup = ({ navigation }) => {
+export const Signup = ({ navigation, setIsLoggedIn = (state) => {} }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'signup' })
+
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
+
+  const today = new Date()
+  const currentMonth = today.getMonth()
 
   const [newUser, setNewUser] = useState({
     age: '',
@@ -19,20 +27,7 @@ export const Signup = ({ navigation }) => {
     username: '',
     email: '',
     password: '',
-    streak: 0,
-    experience: 0,
-    league: 0,
-    items: {
-      gems: 5,
-      cheatBreaks: 1,
-      morningBonus: false,
-      eveningBonus: false,
-      purchasedBonuses: 0,
-    },
-    quests: {
-      completed: 0,
-      month: 0,
-    },
+    month: currentMonth,
   })
 
   const signupInputs = [
@@ -66,19 +61,18 @@ export const Signup = ({ navigation }) => {
     },
   ]
 
-  const onSignup = () => {
-    const auth = getAuth()
-    const db = getFirestore()
+  const onSignup = async (event) => {
+    event.preventDefault()
 
-    createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
-      .then(async () => {
-        const usersCol = collection(db, 'users')
-        const newUserRef = doc(usersCol, auth.currentUser.uid)
-        await setDoc(newUserRef, newUser)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    // TODO: Check if valid email and strong password
+    // TODO: UI feedback if not valid
+    if (!newUser.email || !newUser.password) return
+
+    const response = await axios.post('/users/signup', newUser)
+    const result = response.data
+
+    dispatch(logUser({ id: result.userId, token: result.token }))
+    setIsLoggedIn(true)
   }
 
   return (

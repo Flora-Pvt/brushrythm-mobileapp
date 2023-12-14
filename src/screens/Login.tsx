@@ -11,7 +11,6 @@ import { useDispatch } from 'react-redux'
 import { ThunkDispatch } from '@reduxjs/toolkit'
 import { logUser } from 'features/user/userSlice'
 
-import { storeStringData } from 'utils/async-storage'
 import { COLORS } from 'utils/constants'
 
 export const Login = ({ navigation, setIsLoggedIn = (state) => {} }) => {
@@ -49,10 +48,7 @@ export const Login = ({ navigation, setIsLoggedIn = (state) => {} }) => {
     const response = await axios.post('/users/login', { email, password })
     const result = response.data
 
-    storeStringData('userId', result.id)
-    storeStringData('token', result.token)
-
-    dispatch(logUser(result.id, result.token))
+    dispatch(logUser(result))
     setIsLoggedIn(true)
   }
 

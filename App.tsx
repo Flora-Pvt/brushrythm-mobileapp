@@ -30,7 +30,7 @@ const App = () => {
 
   const { t } = useTranslation('translation', { keyPrefix: 'app' })
 
-  async function checkUserCredentialsInStorage() {
+  const checkUserCredentialsInStorage = async () => {
     const token = await getStringData('token')
     const userId = await getStringData('userId')
 
@@ -40,7 +40,7 @@ const App = () => {
       if (decodedToken.exp === 0) {
         setIsLoggedIn(false)
       } else {
-        store.dispatch(logUser(userId, token))
+        store.dispatch(logUser({ id: userId, token }))
         setIsLoggedIn(true)
       }
     }
@@ -71,11 +71,14 @@ const App = () => {
               )}
             </Stack.Screen>
 
-            <Stack.Screen
-              name="Signup"
-              component={SignupScreen}
-              options={{ headerShown: false }}
-            />
+            <Stack.Screen name="Signup" options={{ headerShown: false }}>
+              {(props) => (
+                <SignupScreen
+                  navigation={props.navigation}
+                  setIsLoggedIn={setIsLoggedIn}
+                />
+              )}
+            </Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
