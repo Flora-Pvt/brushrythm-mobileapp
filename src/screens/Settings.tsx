@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { ScrollView, View, Text, StyleSheet } from 'react-native'
+import { ScrollView, View, Pressable, StyleSheet } from 'react-native'
 import AppInput from 'components/general/AppInput'
+import AppText from 'components/general/AppText'
 
 import { useSelector } from 'react-redux'
 import { selectUser } from 'features/user/userSlice'
@@ -9,12 +10,16 @@ import { useTranslation } from 'react-i18next'
 
 import { COLORS } from 'utils/constants'
 
+import axios from 'axios'
+
 export default function Settings() {
   const { t } = useTranslation('translation', { keyPrefix: 'signup' })
 
   const userToChange = useSelector(selectUser)
+  const userCopy = { ...userToChange }
 
   const [user, setUser] = useState(userToChange)
+  const [isUserChanged, setIsUserChanged] = useState(false)
 
   const userInitial = user.username.slice(0, 1)
 
@@ -41,11 +46,27 @@ export default function Settings() {
     },
   ]
 
+  const onChangeText = (newUserVal) => {
+    setUser(newUserVal)
+
+    const isChange =
+      user.name !== userCopy.name ||
+      user.username !== userCopy.username ||
+      user.email !== userCopy.email
+
+    setIsUserChanged(isChange)
+  }
+
+  const onSaveChange = async () => {
+    const { name, username, email } = user
+    axios.patch(`/users/${user.id}`, { name, username, email })
+  }
+
   return (
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.initialContainer}>
-          <Text style={styles.initial}>{userInitial}</Text>
+          <AppText style={styles.initial}>{userInitial}</AppText>
         </View>
 
         <View style={styles.inputContainer}>
@@ -55,11 +76,22 @@ export default function Settings() {
               label={settingInput.label}
               value={settingInput.value}
               onChangeText={(newVal) =>
-                setUser({ ...user, [settingInput.key]: newVal })
+                onChangeText({ ...user, [settingInput.key]: newVal })
               }
             />
           ))}
         </View>
+
+        <Pressable
+          style={{
+            ...styles.button,
+            opacity: isUserChanged ? 1 : 0.4,
+          }}
+          onPress={onSaveChange}
+          disabled={!isUserChanged}
+        >
+          <AppText>{t('save', { keyPrefix: 'common' })}</AppText>
+        </Pressable>
       </View>
     </ScrollView>
   )
@@ -85,5 +117,15 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     gap: 30,
+  },
+
+  button: {
+    backgroundColor: COLORS.primary,
+    height: 40,
+    marginTop: 60,
+    marginBottom: 8,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })

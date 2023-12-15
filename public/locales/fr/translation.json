@@ -40,6 +40,7 @@
 
     "common": {
       "loading": "Chargement...",
+      "save": "Sauvegarder",
 
       "age": "Âge",
       "name": "Nom",
