@@ -1,9 +1,10 @@
 import axios from 'axios'
 
 import React, { useState } from 'react'
-import { View, Pressable, StyleSheet } from 'react-native'
+import { View, Pressable, StyleSheet, TextInputProps } from 'react-native'
 import AppText from 'components/general/AppText'
 import AppInput from 'components/general/AppInput'
+import AppButton from 'components/general/AppButton'
 
 import { useTranslation } from 'react-i18next'
 
@@ -30,23 +31,26 @@ export const Login = ({ navigation, setIsLoggedIn = (state) => {} }) => {
       inputMode: 'email',
       value: loginCredentials.email,
       key: 'email',
+      autocomplete: 'email' as TextInputProps['autoComplete'],
     },
     {
       label: t('password', { keyPrefix: 'common' }),
       value: loginCredentials.password,
       key: 'password',
+      autocomplete: 'current-password' as TextInputProps['autoComplete'],
     },
   ]
 
   const onSignin = async (event, { email, password }) => {
     event.preventDefault()
 
-    // TODO: Check if valid email and strong password
     // TODO: UI feedback if not valid
     if (!email || !password) return
 
     const response = await axios.post('/users/login', { email, password })
     const result = response.data
+
+    // TODO: UI feedback if error
 
     dispatch(logUser(result))
     setIsLoggedIn(true)
@@ -60,6 +64,7 @@ export const Login = ({ navigation, setIsLoggedIn = (state) => {} }) => {
             key={`setting-input-${inputIndex}`}
             label={loginInput.label}
             value={loginInput.value}
+            autocomplete={loginInput.autocomplete}
             onChangeText={(newVal) =>
               setLoginCredentials({
                 ...loginCredentials,
@@ -70,15 +75,13 @@ export const Login = ({ navigation, setIsLoggedIn = (state) => {} }) => {
         ))}
       </View>
 
-      <Pressable
-        style={styles.button}
+      <AppButton
+        text={t('signin')}
         onPress={(e) => onSignin(e, loginCredentials)}
-      >
-        <AppText>{t('signin')}</AppText>
-      </Pressable>
+      />
 
       <Pressable onPress={() => navigation.navigate('Signup')}>
-        <AppText style={styles.signup}>{t('noAccountYet')}</AppText>
+        <AppText style={styles.signupLink}>{t('noAccountYet')}</AppText>
       </Pressable>
     </View>
   )
@@ -94,16 +97,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     gap: 30,
   },
-  button: {
-    backgroundColor: COLORS.primary,
-    height: 40,
-    marginTop: 60,
-    marginBottom: 8,
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  signup: {
+  signupLink: {
     color: COLORS.white,
     fontSize: 12,
     textAlign: 'right',

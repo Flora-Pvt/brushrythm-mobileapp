@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { ScrollView, View, Pressable, StyleSheet } from 'react-native'
 import AppInput from 'components/general/AppInput'
 import AppText from 'components/general/AppText'
+import AppButton from 'components/general/AppButton'
 
 import { useTranslation } from 'react-i18next'
 
@@ -65,11 +66,14 @@ export const Signup = ({ navigation, setIsLoggedIn = (state) => {} }) => {
     event.preventDefault()
 
     // TODO: Check if valid email and strong password
+    // TODO: Check if other fields are filled
     // TODO: UI feedback if not valid
     if (!newUser.email || !newUser.password) return
 
     const response = await axios.post('/users/signup', newUser)
     const result = response.data
+
+    // TODO: UI feedback if error
 
     dispatch(logUser({ id: result.userId, token: result.token }))
     setIsLoggedIn(true)
@@ -91,12 +95,10 @@ export const Signup = ({ navigation, setIsLoggedIn = (state) => {} }) => {
           ))}
         </View>
 
-        <Pressable style={styles.button} onPress={onSignup}>
-          <AppText>{t('createAccount')}</AppText>
-        </Pressable>
+        <AppButton text={t('createAccount')} onPress={onSignup} />
 
         <Pressable onPress={() => navigation.navigate('Login')}>
-          <AppText style={styles.login}>{t('alreadyAccount')}</AppText>
+          <AppText style={styles.loginLink}>{t('alreadyAccount')}</AppText>
         </Pressable>
       </ScrollView>
     </View>
@@ -113,16 +115,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     gap: 30,
   },
-  button: {
-    backgroundColor: COLORS.primary,
-    height: 40,
-    marginTop: 60,
-    marginBottom: 8,
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  login: {
+  loginLink: {
     color: COLORS.white,
     fontSize: 12,
     textAlign: 'right',

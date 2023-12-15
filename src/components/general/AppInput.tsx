@@ -1,27 +1,18 @@
 import React from 'react'
-import { View, TextInput, StyleSheet } from 'react-native'
+import { TextInputProps, View, TextInput, StyleSheet } from 'react-native'
 import AppText from './AppText'
 
 import { useFonts, Inter_400Regular } from '@expo-google-fonts/inter'
 
 import { COLORS } from 'utils/constants'
 
-type InputModeOptions =
-  | 'none'
-  | 'text'
-  | 'decimal'
-  | 'numeric'
-  | 'tel'
-  | 'search'
-  | 'email'
-  | 'url'
-
 export default function AppInput({
   label = 'label',
   placeholder = '',
-  inputMode = 'text' as InputModeOptions,
+  inputMode = 'text' as TextInputProps['inputMode'],
   maxLength = null,
   value,
+  autocomplete = 'off' as TextInputProps['autoComplete'],
   onChangeText = (text) => {},
 }) {
   const [fontsLoaded] = useFonts({ Inter_400Regular })
@@ -37,6 +28,7 @@ export default function AppInput({
         inputMode={inputMode}
         maxLength={maxLength}
         value={value}
+        autoComplete={autocomplete}
         onChangeText={onChangeText}
       />
     </View>

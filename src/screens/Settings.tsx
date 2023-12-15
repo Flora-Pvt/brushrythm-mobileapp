@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next'
 import { COLORS } from 'utils/constants'
 
 import axios from 'axios'
+import AppButton from 'components/general/AppButton'
 
 export default function Settings() {
   const { t } = useTranslation('translation', { keyPrefix: 'signup' })
@@ -82,16 +83,11 @@ export default function Settings() {
           ))}
         </View>
 
-        <Pressable
-          style={{
-            ...styles.button,
-            opacity: isUserChanged ? 1 : 0.4,
-          }}
-          onPress={onSaveChange}
+        <AppButton
+          text={t('save', { keyPrefix: 'common' })}
           disabled={!isUserChanged}
-        >
-          <AppText>{t('save', { keyPrefix: 'common' })}</AppText>
-        </Pressable>
+          onPress={onSaveChange}
+        />
       </View>
     </ScrollView>
   )
@@ -117,15 +113,5 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     gap: 30,
-  },
-
-  button: {
-    backgroundColor: COLORS.primary,
-    height: 40,
-    marginTop: 60,
-    marginBottom: 8,
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 })
