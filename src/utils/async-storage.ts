@@ -11,7 +11,7 @@ export const storeData = async (key, value) => {
 
 export const storeStringData = async (key, value) => {
   try {
-    await AsyncStorage.setItem(key, value)
+    await AsyncStorage.setItem(key, String(value))
   } catch (e) {
     console.log(e)
   }
