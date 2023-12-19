@@ -38,7 +38,7 @@ export default function HeaderModal({
       modalVisible={modalVisible}
       setModalVisible={setModalVisible}
       animationType="fade"
-      containerStyle={{ ...styles.modalContainer, marginTop: headerHeight }}
+      containerStyle={{ ...styles.modalContainer, paddingTop: headerHeight }}
       modalStyle={styles.modalInner}
       ctaStyle={styles.modalCta}
       ctaText={t('home.headerCta')}

@@ -10,7 +10,7 @@ import { COLORS } from 'utils/constants'
 import { Timeline, Infinite, Gem } from 'utils/svg-images'
 import { getArtisticPath } from 'utils/paths'
 
-const headerHeight = 64
+const headerHeight = 80
 
 export default function Header({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false)
@@ -59,6 +59,7 @@ export default function Header({ navigation }) {
 const styles = StyleSheet.create({
   header: {
     paddingLeft: 12,
+    paddingVertical: 16,
     flexDirection: 'row',
     gap: 32,
     height: headerHeight,

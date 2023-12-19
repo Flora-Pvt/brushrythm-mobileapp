@@ -1,5 +1,5 @@
 import React from 'react'
-import { ModalProps, View, Modal, StyleSheet } from 'react-native'
+import { ModalProps, Modal, Pressable, View, StyleSheet } from 'react-native'
 import AppButton from './AppButton'
 import { COLORS } from 'utils/constants'
 
@@ -13,7 +13,12 @@ export default function AppModal({
   children,
   ctaText,
 }) {
-  /** TODO: add clikoutside */
+  const closeIfPressOutside = (event) => {
+    const isPressOnModal = event.target.closest('#modalInner')
+
+    if (isPressOnModal) return
+    setModalVisible(false)
+  }
 
   return (
     <Modal
@@ -24,8 +29,11 @@ export default function AppModal({
         setModalVisible(!modalVisible)
       }}
     >
-      <View style={{ ...styles.container, ...containerStyle }}>
-        <View style={{ ...styles.modal, ...modalStyle }}>
+      <Pressable
+        style={{ ...styles.container, ...containerStyle }}
+        onPress={closeIfPressOutside}
+      >
+        <View id="modalInner" style={{ ...styles.modal, ...modalStyle }}>
           {children}
 
           <AppButton
@@ -34,7 +42,7 @@ export default function AppModal({
             onPress={() => setModalVisible(!modalVisible)}
           ></AppButton>
         </View>
-      </View>
+      </Pressable>
     </Modal>
   )
 }
@@ -44,7 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    paddingTop: 22,
   },
   modal: {
     margin: 20,
