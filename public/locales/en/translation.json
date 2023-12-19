@@ -14,6 +14,81 @@
       "alreadyAccount": "Already have an account? Login"
     },
 
+    "home": {
+      "headerCta": "Let's go!",
+      "stepModal": "Start your session. Take 25 minutes to draw according to the objectives you have defined:"
+    },
+
+    "paths": {
+      "comic": {
+        "title": "Comic strip",
+        "description": "Choose this path to create a comic strip, you will have one week for each step:",
+        "steps": [
+          {
+            "summary": "1. The main character",
+            "detailed": "1. Draw the main character (emotions, clothes, body shape, clothing...)"
+          },
+          {
+            "summary": "2. The universe (sets, vehicles...)",
+            "detailed": "2. Draw the universe - sets, vehicles... (study codes and clichés which allow readers to identify the universe (architecture studies, iconography, costumes, ...))"
+          },
+          {
+            "summary": "3. Allies and adversaries",
+            "detailed": "3. Draw allies and adversaries (emotions, clothing, body shapes, clothing...)"
+          },
+          {
+            "summary": "4. The storyboard",
+            "detailed": "4. The storyboard (think about the framing, setting, positioning of the characters (their action and their mentality), dialogue bubbles and framed explanatory texts)"
+          },
+          { "summary": "5. Line work", "detailed": "5. Line work" },
+          {
+            "summary": "6. Inking, coloring, shading",
+            "detailed": "6. Inking, coloring, shading"
+          }
+        ],
+        "tips": "Tip: move on to drawing after developing the idea (2-3 sentences), the synopsis (around 4 pages - chronological) and the sequencer (around 15 pages - described scene by scene, no dialogue or long description, neutral text)."
+      },
+
+      "practice": {
+        "title": "Exercises",
+        "description": "Choose this path to keep a daily drawing practice, you will be able to select a new theme each week.",
+        "tips": "Tip: take a specific subject (hands, facial expressions, cats, rocks...)."
+      },
+
+      "theory": {
+        "title": "Theory",
+        "description": "Choose this path to strengthen your drawing foundations, focusing on one subject per week:",
+        "steps": [
+          {
+            "summary": "1. Light",
+            "detailed": "1. Light"
+          },
+          {
+            "summary": "2. Colors",
+            "detailed": "2. Colors"
+          },
+          {
+            "summary": "3. Composition",
+            "detailed": "3. Composition"
+          },
+          {
+            "summary": "4. Perspective",
+            "detailed": "4. Perspective"
+          },
+          { "summary": "5. Characters", "detailed": "5. Characters" },
+          {
+            "summary": "6. Dynamic poses",
+            "detailed": "6. Dynamic poses"
+          },
+          {
+            "summary": "6. Head",
+            "detailed": "6. Head"
+          }
+        ],
+        "tips": "Tip: you can pick these subjects for the exercises."
+      }
+    },
+
     "quests": {
       "monthQuests": "{{month}} quests",
       "complete": "Complete {{count}} quest",

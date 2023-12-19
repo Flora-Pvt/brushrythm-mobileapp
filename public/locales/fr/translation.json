@@ -14,6 +14,81 @@
       "alreadyAccount": "Déjà un compte ? Connectez-vous"
     },
 
+    "home": {
+      "headerCta": "C'est parti !",
+      "stepModal": "Commence ta session. Prends 25 minutes pour dessiner selon les objectifs que tu as définis :"
+    },
+
+    "paths": {
+      "comic": {
+        "title": "Bande dessinée",
+        "description": "Choisis ce parcours pour créer une bande dessinée, tu auras une semaine pour chaque étape :",
+        "steps": [
+          {
+            "summary": "1. Le personnage principal",
+            "detailed": "1. Dessiner le personnage principal (émotions, vêtements, corpulences, vêtements...)"
+          },
+          {
+            "summary": "2. L'univers (décors, véhicules...)",
+            "detailed": "2. Dessiner l'univers - décors, véhicules... (étudier codes et clichés qui permettent aux lecteurs d'identifier l'univers (études architecture, iconographie, costumes, ...))"
+          },
+          {
+            "summary": "3. Les alliés et adversaires",
+            "detailed": "3. Dessiner les alliés et adversaires (émotions, vêtements, corpulences, vêtements...)"
+          },
+          {
+            "summary": "4. Elaborer les planches",
+            "detailed": "4. Elaborer les planches (penser au cadrage, décor, positionnement des personnages (leur action et leur mentalité), bulles de dialogue et textes explicatifs encadrés)"
+          },
+          { "summary": "5. Crayonné", "detailed": "5. Crayonné" },
+          {
+            "summary": "6. Encrage, mise en couleur, ombrage",
+            "detailed": "6. Encrage, mise en couleur, ombrage"
+          }
+        ],
+        "tips": "Conseil : passe au dessin après l'élaboration de l'idée (2-3 phrases), du synopsis (environ 4 pages - chronologique) et du séquencier (environ 15 pages - décrit scène par scène, pas de dialogue ou description longue, texte neutre)."
+      },
+
+      "practice": {
+        "title": "Exercices",
+        "description": "Choisis ce parcours pour garder une pratique de dessin quotidienne,  tu pourras sélectionner un nouveau thème chaque semaine.",
+        "tips": "Conseil : prends un sujet précis (les mains, les expressions faciales, les chats, les roches...)."
+      },
+
+      "theory": {
+        "title": "Théorie",
+        "description": "Choisis ce parcours pour renforcer tes bases en dessin, en te concentrant sur un sujet par semaine :",
+        "steps": [
+          {
+            "summary": "1. La lumière",
+            "detailed": "1. La lumière"
+          },
+          {
+            "summary": "2. Les couleurs",
+            "detailed": "2. Les couleurs"
+          },
+          {
+            "summary": "3. La composition",
+            "detailed": "3. La composition"
+          },
+          {
+            "summary": "4. La perspective",
+            "detailed": "4. La perspective"
+          },
+          { "summary": "5. Les personnages", "detailed": "5. Les personnages" },
+          {
+            "summary": "6. Les poses dynamiques",
+            "detailed": "6. Les poses dynamiques"
+          },
+          {
+            "summary": "6. La tête",
+            "detailed": "6. La tête"
+          }
+        ],
+        "tips": "Conseil : tu peux t'inspirer des sujets pour les exercices."
+      }
+    },
+
     "quests": {
       "monthQuests": "Quêtes de {{month}}",
       "complete": "Complète {{count}} quête",
