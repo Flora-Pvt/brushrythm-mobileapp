@@ -37,8 +37,9 @@ const App = () => {
 
     if (typeof token === 'string') {
       const decodedToken = jwtDecode(token)
+      const isTokenExpired = Date.now() >= decodedToken.exp * 1000
 
-      if (decodedToken.exp === 0) {
+      if (isTokenExpired) {
         setIsLoggedIn(false)
       } else {
         store.dispatch(logUser({ id: userId, token }))
