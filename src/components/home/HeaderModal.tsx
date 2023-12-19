@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 import { View, Pressable, StyleSheet } from 'react-native'
 import AppModal from 'components/general/AppModal'
 import AppText from 'components/general/AppText'
@@ -15,22 +16,47 @@ export default function HeaderModal({
   modalVisible,
   setModalVisible,
   headerHeight,
+  setHeaderPathIcon = (pathType) => {},
 }) {
   const { t } = useTranslation('translation')
 
-  const user = useSelector(selectUser)
+  const [selectedPath, setSelectedPath] = useState({
+    type: '',
+    title: '',
+    description: '',
+    steps: [] as {},
+    tips: '',
+    icon: null,
+  })
 
-  const [selectedPath, setSelectedPath] = useState(getArtisticPath(user?.path))
+  const user = useSelector(selectUser)
 
   const isSelectedPath = (pathType) => selectedPath.type === pathType
 
-  const onChoosePath = (pathType) => {
+  useEffect(() => {
+    if (!selectedPath.type.length && user.path) {
+      setSelectedPath(getArtisticPath(user.path))
+    }
+  }, [user.path])
+
+  const onSeePath = (pathType) => {
     if (pathType === selectedPath.type) {
       setModalVisible(false)
       return
     }
 
     setSelectedPath(getArtisticPath(pathType))
+  }
+
+  const onChoosePath = (pathType) => {
+    if (pathType === user.path) {
+      setModalVisible(false)
+      return
+    }
+
+    axios.patch(`/users/${user.id}`, { path: pathType })
+    setHeaderPathIcon(() => selectedPath.icon)
+    setModalVisible(false)
   }
 
   return (
@@ -42,6 +68,7 @@ export default function HeaderModal({
       modalStyle={styles.modalInner}
       ctaStyle={styles.modalCta}
       ctaText={t('home.headerCta')}
+      onPressCta={() => onChoosePath(selectedPath.type)}
     >
       <View style={styles.pathsContainer}>
         {artisticPaths.map((path) => (
@@ -53,7 +80,7 @@ export default function HeaderModal({
                 ? COLORS.primaryDark
                 : COLORS.secondaryLighter,
             }}
-            onPress={() => onChoosePath(path.type)}
+            onPress={() => onSeePath(path.type)}
           >
             <path.icon color={COLORS.white} />
           </Pressable>

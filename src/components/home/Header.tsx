@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Pressable, StyleSheet } from 'react-native'
 import HeaderModal from './HeaderModal'
 import AppText from 'components/general/AppText'
@@ -14,12 +14,18 @@ const headerHeight = 80
 
 export default function Header({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false)
+  const [HeaderPathIcon, setHeaderPathIcon] = useState(null)
 
   const user = useSelector(selectUser)
 
-  const IconPath = getArtisticPath(user?.path).icon
-
   const iconsColor = COLORS.secondary
+
+  useEffect(() => {
+    if (!HeaderPathIcon && user.path) {
+      const currentPath = getArtisticPath(user.path)
+      setHeaderPathIcon(() => currentPath.icon)
+    }
+  }, [user.path])
 
   return (
     <View style={styles.header}>
@@ -27,11 +33,12 @@ export default function Header({ navigation }) {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         headerHeight={headerHeight}
+        setHeaderPathIcon={setHeaderPathIcon}
       />
 
       <Pressable style={styles.userInfo} onPress={() => setModalVisible(true)}>
         <View style={styles.iconPathContainer}>
-          <IconPath color={iconsColor} />
+          {HeaderPathIcon && <HeaderPathIcon color={iconsColor} />}
         </View>
       </Pressable>
 

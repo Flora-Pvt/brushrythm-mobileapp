@@ -12,6 +12,7 @@ export default function AppModal({
   ctaStyle = {},
   children,
   ctaText,
+  onPressCta = (data) => {},
 }) {
   const closeIfPressOutside = (event) => {
     const isPressOnModal = event.target.closest('#modalInner')
@@ -39,8 +40,8 @@ export default function AppModal({
           <AppButton
             text={ctaText}
             customStyles={{ ...styles.button, ...ctaStyle }}
-            onPress={() => setModalVisible(!modalVisible)}
-          ></AppButton>
+            onPress={onPressCta}
+          />
         </View>
       </Pressable>
     </Modal>

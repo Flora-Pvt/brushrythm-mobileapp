@@ -29,12 +29,9 @@ export const artisticPaths = [
   },
 ]
 
-export const defaultArtisticPath = artisticPaths.find(
-  (path) => path.type === 'practice'
-)
+export const defaultPathType = 'practice'
 
-export const getArtisticPath = (path) => {
+export const getArtisticPath = (path = defaultPathType) => {
   let userPath = artisticPaths.find((artPath) => artPath.type === path)
-  if (!userPath) userPath = defaultArtisticPath
   return userPath
 }
