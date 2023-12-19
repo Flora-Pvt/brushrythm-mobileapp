@@ -2,7 +2,7 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { StyleSheet } from 'react-native'
 
-import Header from 'layouts/Header'
+import Header from 'components/home/Header'
 import HomeScreen from 'screens/Home'
 import QuestsScreen from 'screens/Quests'
 import GalleryScreen from 'screens/Gallery'

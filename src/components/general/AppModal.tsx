@@ -1,30 +1,36 @@
 import React from 'react'
-import { View, Modal, StyleSheet } from 'react-native'
+import { ModalProps, View, Modal, StyleSheet } from 'react-native'
 import AppButton from './AppButton'
 import { COLORS } from 'utils/constants'
 
 export default function AppModal({
   modalVisible,
   setModalVisible,
+  animationType = 'none' as ModalProps['animationType'],
+  containerStyle = {},
+  modalStyle = {},
+  ctaStyle = {},
   children,
   ctaText,
 }) {
+  /** TODO: add clikoutside */
+
   return (
     <Modal
-      animationType="slide"
+      animationType={animationType}
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
         setModalVisible(!modalVisible)
       }}
     >
-      <View style={styles.container}>
-        <View style={styles.modalView}>
+      <View style={{ ...styles.container, ...containerStyle }}>
+        <View style={{ ...styles.modal, ...modalStyle }}>
           {children}
 
           <AppButton
             text={ctaText}
-            customStyles={{ width: 200 }}
+            customStyles={{ ...styles.button, ...ctaStyle }}
             onPress={() => setModalVisible(!modalVisible)}
           ></AppButton>
         </View>
@@ -40,7 +46,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 22,
   },
-  modalView: {
+  modal: {
     margin: 20,
     backgroundColor: COLORS.secondary,
     borderRadius: 12,
@@ -55,5 +61,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  button: {
+    width: 200,
+    alignSelf: 'center',
   },
 })
