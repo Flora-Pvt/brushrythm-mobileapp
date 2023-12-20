@@ -11,6 +11,7 @@ import { selectUser } from 'features/user/userSlice'
 
 import { COLORS } from 'utils/constants'
 import { artisticPaths, getArtisticPath } from 'utils/paths'
+import { formatDate } from 'utils/date-fns-format'
 
 export default function HeaderModal({
   modalVisible,
@@ -39,6 +40,16 @@ export default function HeaderModal({
     }
   }, [user.path])
 
+  const resetPath = async (pathType) => {
+    const today = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss')
+
+    await axios.patch(`/users/${user.id}`, {
+      path: pathType,
+      last_exercise_date: today,
+      exercises_completed: JSON.stringify([]),
+    })
+  }
+
   const onSeePath = (pathType) => {
     if (pathType === selectedPath.type) {
       setModalVisible(false)
@@ -54,7 +65,9 @@ export default function HeaderModal({
       return
     }
 
-    axios.patch(`/users/${user.id}`, { path: pathType })
+    // TODO: get status and display toaster if error
+    // TODO: alert that steps will be reset
+    resetPath(pathType)
     setHeaderPathIcon(() => selectedPath.icon)
     setModalVisible(false)
   }
