@@ -37,11 +37,13 @@ export default function AppModal({
         <View id="modalInner" style={{ ...styles.modal, ...modalStyle }}>
           {children}
 
-          <AppButton
-            text={ctaText}
-            customStyles={{ ...styles.button, ...ctaStyle }}
-            onPress={onPressCta}
-          />
+          {ctaText ? (
+            <AppButton
+              text={ctaText}
+              customStyles={{ ...styles.button, ...ctaStyle }}
+              onPress={onPressCta}
+            />
+          ) : null}
         </View>
       </Pressable>
     </Modal>

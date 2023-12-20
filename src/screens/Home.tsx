@@ -1,52 +1,106 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 import { ScrollView, View, StyleSheet } from 'react-native'
+import AppText from 'components/general/AppText'
+import AppModal from 'components/general/AppModal'
+import ExerciseButtons from 'components/home/ExerciseButtons'
 
 import { useSelector } from 'react-redux'
 import { selectUser } from 'features/user/userSlice'
 
-import Step from 'components/home/Step'
-import HorizontalConnector from 'components/home/HorizontalConnector'
-import { VerticalConnector } from 'utils/svg-images'
+import { useTranslation } from 'react-i18next'
+import { COLORS } from 'utils/constants'
+import { getArtisticPath } from 'utils/paths'
+import { formatDate } from 'utils/date-fns-format'
 
 export default function Home() {
+  const { t } = useTranslation('translation', { keyPrefix: 'home' })
+
+  const initialModalContent = {
+    body: t('exerciseModalStart.body'),
+    ctaText: t('exerciseModalStart.cta'),
+    ctaAction: 'start',
+  }
+  const initialPath = {
+    type: '',
+    steps: [{ detailed: '' }] as {},
+  }
+
+  const [modalVisible, setModalVisible] = useState(false)
+  const [modalContent, setModalContent] = useState(initialModalContent)
+  const [path, setPath] = useState(initialPath)
+
   const user = useSelector(selectUser)
 
-  console.log(user)
+  useEffect(() => {
+    if (!path.type && user.path) setPath(getArtisticPath(user.path))
+  }, [user.path])
+
+  const updateExercisesCompleted = async () => {
+    const today = new Date()
+    const lastExerciseDate = new Date(user.last_exercise_date)
+    let exercisesCompleted = [...user.exercises_completed]
+
+    if (today.getDay() === lastExerciseDate.getDay()) {
+      exercisesCompleted[exercisesCompleted.length - 1]++
+    } else {
+      exercisesCompleted.push(1)
+    }
+
+    // TODO: if end of the week increase step
+    // TODO: check difference between today and last_exercise_date to add exercise at the right index
+    // TODO: get status and display toaster if error
+    await axios.patch(`/users/${user.id}`, {
+      last_exercise_date: formatDate(today, 'yyyy-MM-dd HH:mm:ss'),
+      exercises_completed: JSON.stringify(exercisesCompleted),
+    })
+  }
+
+  const onPressModalCta = () => {
+    switch (modalContent.ctaAction) {
+      case 'start':
+        setModalContent({
+          ...modalContent,
+          body: t('exerciseModalDo.body'),
+          ctaText: '',
+        })
+
+        // TODO: add a loading animation
+        setTimeout(() => {
+          setModalContent({
+            ...modalContent,
+            ctaText: t('exerciseModalDo.cta'),
+            ctaAction: 'done',
+          })
+        }, 4000)
+        break
+
+      case 'done':
+        setModalVisible(false)
+        setModalContent(initialModalContent)
+        updateExercisesCompleted()
+        break
+    }
+  }
 
   return (
     <ScrollView>
       <View style={styles.mainContainer}>
-        <VerticalConnector style={styles.firstVerticalConnector} />
+        <AppModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          animationType="slide"
+          ctaText={modalContent.ctaText}
+          onPressCta={onPressModalCta}
+        >
+          <AppText style={styles.modalText}>{modalContent.body}</AppText>
+          <AppText style={styles.modalText}>
+            {path.steps[user.step || 0].detailed}
+          </AppText>
+        </AppModal>
 
         <View style={styles.lineContainer}>
-          {/* <Text>{user?.streak || 0}</Text> */}
-          <View style={styles.stepsLine}>
-            <Step />
-            <HorizontalConnector />
-            <Step />
-          </View>
-
-          <View style={styles.stepsLine}>
-            <Step />
-            <HorizontalConnector />
-            <Step />
-          </View>
-
-          <View style={styles.stepsLine}>
-            <Step />
-            <HorizontalConnector />
-            <Step />
-          </View>
-
-          <View style={styles.stepsLine}>
-            <Step />
-            <HorizontalConnector style={styles.lastHorizontalConnector} />
-          </View>
-        </View>
-
-        <View>
-          <VerticalConnector style={styles.secondVerticalConnector} />
-          <VerticalConnector style={styles.thirdVerticalConnector} />
+          <ExerciseButtons setModalVisible={setModalVisible} />
         </View>
       </View>
     </ScrollView>
@@ -59,27 +113,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    padding: 40,
+  },
+
+  modalText: {
+    color: COLORS.white,
   },
 
   lineContainer: {
-    gap: 100,
-  },
-  stepsLine: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    rowGap: 24,
   },
-
-  lastHorizontalConnector: {
-    position: 'absolute',
-    right: 0,
-  },
-  firstVerticalConnector: {
-    transform: [{ rotate: '180deg' }],
-    marginTop: 199.5,
-    marginRight: -8,
-  },
-  secondVerticalConnector: { marginTop: 29.5, marginLeft: -8 },
-  thirdVerticalConnector: { marginTop: 158, marginLeft: -8 },
 })

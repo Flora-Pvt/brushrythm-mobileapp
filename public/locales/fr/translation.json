@@ -16,7 +16,14 @@
 
     "home": {
       "headerCta": "C'est parti !",
-      "stepModal": "Commence ta session. Prends 25 minutes pour dessiner selon les objectifs que tu as définis :"
+      "exerciseModalStart": {
+        "body": "Commence ta session. Prends 25 minutes pour dessiner selon les objectifs que tu as définis :",
+        "cta": "C'est parti !"
+      },
+      "exerciseModalDo": {
+        "body": "Fais de ton mieux",
+        "cta": "J'ai fini"
+      }
     },
 
     "paths": {

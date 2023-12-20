@@ -16,7 +16,14 @@
 
     "home": {
       "headerCta": "Let's go!",
-      "stepModal": "Start your session. Take 25 minutes to draw according to the objectives you have defined:"
+      "exerciseModalStart": {
+        "body": "Start your session. Take 25 minutes to draw according to the objectives you have defined:",
+        "cta": "Let's go!"
+      },
+      "exerciseModalDo": {
+        "body": "Do your best",
+        "cta": "I'm done"
+      }
     },
 
     "paths": {

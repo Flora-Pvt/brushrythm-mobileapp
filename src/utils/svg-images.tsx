@@ -69,25 +69,6 @@ export const Gem = ({ size = defaultSize, color = defaultColor }) => (
   </Svg>
 )
 
-export const VerticalConnector = (props) => (
-  <Svg
-    style={props.style}
-    width="41"
-    height="170"
-    viewBox="0 0 41 246"
-    fill="none"
-  >
-    <Path
-      d="M4.20502 4H13C26.2548 4 37 14.7452 37 28V217.43C37 230.685 26.2548 241.43 13 241.43H4.20502"
-      stroke="#F4DFD3"
-      strokeWidth="6"
-      strokeMiterlimit="0"
-      strokeLinecap="square"
-      strokeLinejoin="bevel"
-    />
-  </Svg>
-)
-
 export const Clock = ({ size = defaultSize, color = defaultColor }) => (
   <Svg width={size} height={size} viewBox="0 0 28 28" fill="none">
     <Path
