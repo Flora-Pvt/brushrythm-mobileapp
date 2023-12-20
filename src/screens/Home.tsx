@@ -29,11 +29,17 @@ export default function Home() {
   const [modalVisible, setModalVisible] = useState(false)
   const [modalContent, setModalContent] = useState(initialModalContent)
   const [path, setPath] = useState(initialPath)
+  const [stepSubject, setStepSubject] = useState('')
 
   const user = useSelector(selectUser)
 
   useEffect(() => {
-    if (!path.type && user.path) setPath(getArtisticPath(user.path))
+    if (!path.type && user.path) {
+      setPath(getArtisticPath(user.path))
+
+      // TODO: add custom subject if practice path
+      setStepSubject(path.steps[user.step || 0]?.detailed || '')
+    }
   }, [user.path])
 
   const updateExercisesCompleted = async () => {
@@ -41,7 +47,10 @@ export default function Home() {
     const lastExerciseDate = new Date(user.last_exercise_date)
     let exercisesCompleted = [...user.exercises_completed]
 
-    if (today.getDay() === lastExerciseDate.getDay()) {
+    if (
+      today.getDay() === lastExerciseDate.getDay() &&
+      exercisesCompleted.length
+    ) {
       exercisesCompleted[exercisesCompleted.length - 1]++
     } else {
       exercisesCompleted.push(1)
@@ -94,9 +103,7 @@ export default function Home() {
           onPressCta={onPressModalCta}
         >
           <AppText style={styles.modalText}>{modalContent.body}</AppText>
-          <AppText style={styles.modalText}>
-            {path.steps[user.step || 0].detailed}
-          </AppText>
+          <AppText style={styles.modalText}>{stepSubject}</AppText>
         </AppModal>
 
         <View style={styles.lineContainer}>

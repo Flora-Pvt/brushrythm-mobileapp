@@ -17,18 +17,21 @@ export default function ExerciseButtons({
   // TODO: find a better algorithm
   const btnPositions = [0, 48, 96, 48, 0, -48, 0]
 
-  const getButtonStyle = (btnIndex) => {
-    const isToday = btnIndex === user.exercises_completed?.length - 1
+  const getButtonStyle = (btnIndex, isActiveDay) => {
     const isBefore = btnIndex < user.exercises_completed?.length - 1
-    const isAfter = btnIndex > user.exercises_completed?.length - 1
+    let isAfter = btnIndex > user.exercises_completed?.length - 1
     const isNotDone = user.exercises_completed?.[btnIndex] === 0
+
+    if (!user.exercises_completed?.length) {
+      isAfter = btnIndex > user.exercises_completed?.length
+    }
 
     const leftPosition = btnPositions[btnIndex]
 
     let backgroundColor = COLORS.primaryDark
     if (isBefore) backgroundColor = COLORS.primary
     if (isAfter || isNotDone) backgroundColor = COLORS.secondaryLighter
-    if (isToday) backgroundColor = COLORS.primaryDark
+    if (isActiveDay) backgroundColor = COLORS.primaryDark
 
     const opacity = isAfter ? 0.5 : 1
 
@@ -40,13 +43,14 @@ export default function ExerciseButtons({
   }
 
   for (let i = 0; i < numberOfDays; i++) {
-    const isDisabled = i !== user.exercises_completed?.length - 1
+    let isActiveDay = i === user.exercises_completed?.length - 1
+    if (!user.exercises_completed?.length) isActiveDay = i === 0
 
     buttons.push(
       <Pressable
         key={`exercise-btn-${i}`}
-        disabled={isDisabled}
-        style={{ ...styles.step, ...getButtonStyle(i) }}
+        disabled={!isActiveDay}
+        style={{ ...styles.step, ...getButtonStyle(i, isActiveDay) }}
         onPress={() => setModalVisible(true)}
       >
         {/* TODO: add emojis depending on the exercises completed that day */}
