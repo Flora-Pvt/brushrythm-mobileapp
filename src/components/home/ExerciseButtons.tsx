@@ -4,6 +4,7 @@ import { COLORS } from 'utils/constants'
 
 import { useSelector } from 'react-redux'
 import { selectUser } from 'features/user/userSlice'
+import { AwardStar, EmptyStar } from 'utils/svg-images'
 
 export default function ExerciseButtons({
   setModalVisible = (state) => {},
@@ -42,6 +43,12 @@ export default function ExerciseButtons({
     }
   }
 
+  const getButtonEmoji = (btnIndex) => {
+    if (user.exercises_completed[btnIndex] > 0)
+      return <AwardStar color={COLORS.secondary} />
+    else return <EmptyStar color={COLORS.secondary} />
+  }
+
   const generateButtons = () => {
     buttons = []
 
@@ -56,7 +63,7 @@ export default function ExerciseButtons({
           style={{ ...styles.step, ...getButtonStyle(i, isActiveDay) }}
           onPress={() => setModalVisible(true)}
         >
-          {/* TODO: add emojis depending on the exercises completed that day */}
+          {isActiveDay ? getButtonEmoji(i) : null}
         </Pressable>
       )
     }

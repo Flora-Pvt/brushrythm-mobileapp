@@ -5,8 +5,9 @@ import AppText from 'components/general/AppText'
 import AppModal from 'components/general/AppModal'
 import ExerciseButtons from 'components/home/ExerciseButtons'
 
-import { useSelector } from 'react-redux'
-import { selectUser } from 'features/user/userSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { ThunkDispatch } from '@reduxjs/toolkit'
+import { selectUser, updateUser } from 'features/user/userSlice'
 
 import { useTranslation } from 'react-i18next'
 import { COLORS } from 'utils/constants'
@@ -15,6 +16,8 @@ import { formatDate } from 'utils/date-fns-format'
 
 export default function Home() {
   const { t } = useTranslation('translation', { keyPrefix: 'home' })
+
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 
   const initialModalContent = {
     body: t('exerciseModalStart.body'),
@@ -57,12 +60,15 @@ export default function Home() {
     }
 
     // TODO: if end of the week increase step
+    // TODO: if end of the path, choose new path or reset path
     // TODO: check difference between today and last_exercise_date to add exercise at the right index
-    // TODO: get status and display toaster if error
-    await axios.patch(`/users/${user.id}`, {
+    const updates = {
       last_exercise_date: formatDate(today, 'yyyy-MM-dd HH:mm:ss'),
       exercises_completed: JSON.stringify(exercisesCompleted),
-    })
+    }
+
+    // TODO: get status and display toaster if error
+    dispatch(updateUser({ id: user.id, updates: updates }))
   }
 
   const onPressModalCta = () => {
@@ -99,7 +105,6 @@ export default function Home() {
         <AppModal
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
-          animationType="slide"
           ctaText={modalContent.ctaText}
           onPressCta={onPressModalCta}
         >
