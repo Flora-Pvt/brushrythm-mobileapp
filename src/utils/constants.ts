@@ -5,6 +5,7 @@ export const COLORS = {
   secondary: '#272C2B',
   secondaryLight: '#3A4341',
   secondaryLighter: '#737F7D',
+  secondaryTransparent: 'rgba(39, 44, 43, 0.5)',
 
   accent: '#C7D6DB',
 

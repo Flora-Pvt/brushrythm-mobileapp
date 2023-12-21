@@ -15,7 +15,12 @@
     },
 
     "home": {
-      "headerCta": "Let's go!",
+      "headerPanelCta": "Let's go!",
+      "headerConfirmPathModal": {
+        "body": "By choosing a new path, all the exercises completed will be reset to zero. Do you agree?",
+        "cta": "I accept"
+      },
+
       "exerciseModalStart": {
         "body": "Start your session. Take 25 minutes to draw according to the objectives you have defined.",
         "cta": "Let's go!"
@@ -121,6 +126,7 @@
 
     "common": {
       "loading": "Loading...",
+      "error": "An error occurred. Please try again later.",
       "save": "Save",
 
       "name": "Name",

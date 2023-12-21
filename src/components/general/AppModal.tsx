@@ -6,16 +6,18 @@ import { COLORS } from 'utils/constants'
 export default function AppModal({
   modalVisible,
   setModalVisible,
-  animationType = 'none' as ModalProps['animationType'],
+  animationType = 'fade' as ModalProps['animationType'],
   containerStyle = {},
-  modalStyle = {},
-  ctaStyle = {},
   children,
   ctaText,
   onPressCta = (data) => {},
 }) {
   const closeIfPressOutside = (event) => {
-    const isPressOnModal = event.target.closest('#modalInner')
+    let isPressOnModal = false
+
+    if (event.target.closest) {
+      isPressOnModal = event.target.closest('#modalInner')
+    }
 
     if (isPressOnModal) return
     setModalVisible(false)
@@ -34,13 +36,13 @@ export default function AppModal({
         style={{ ...styles.container, ...containerStyle }}
         onPress={closeIfPressOutside}
       >
-        <View id="modalInner" style={{ ...styles.modal, ...modalStyle }}>
+        <View id="modalInner" style={styles.modal}>
           {children}
 
           {ctaText ? (
             <AppButton
               text={ctaText}
-              customStyles={{ ...styles.button, ...ctaStyle }}
+              customStyles={styles.button}
               onPress={onPressCta}
             />
           ) : null}

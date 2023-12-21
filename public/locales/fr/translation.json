@@ -1,21 +1,26 @@
 {
   "translation": {
     "app": {
-      "signinCreateAccount": "Connectez-vous ou créez un compte"
+      "signinCreateAccount": "Se connecter ou créer un compte"
     },
 
     "login": {
-      "signin": "Connectez-vous",
-      "noAccountYet": "Pas encore de compte ? Créez un compte"
+      "signin": "Se connecter",
+      "noAccountYet": "Pas encore de compte ? Créer un compte"
     },
 
     "signup": {
       "createAccount": "Créer un compte",
-      "alreadyAccount": "Déjà un compte ? Connectez-vous"
+      "alreadyAccount": "Déjà un compte ? Se connecter"
     },
 
     "home": {
-      "headerCta": "C'est parti !",
+      "headerPanelCta": "C'est parti !",
+      "headerConfirmPathModal": {
+        "body": "En choisissant un nouveau parcours, tous les exercices effectués seront remis à zéro. Es-tu d'accord ?",
+        "cta": "J'accepte"
+      },
+
       "exerciseModalStart": {
         "body": "Commence ta session. Prends 25 minutes pour dessiner selon les objectifs que tu as définis.",
         "cta": "C'est parti !"
@@ -122,6 +127,7 @@
 
     "common": {
       "loading": "Chargement...",
+      "error": "Une erreur est survenue. Veuillez réessayer plus tard.",
       "save": "Sauvegarder",
 
       "age": "Âge",
