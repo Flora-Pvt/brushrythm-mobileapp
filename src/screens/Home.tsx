@@ -20,28 +20,28 @@ export default function Home() {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 
   const initialModalContent = {
+    title: '',
     body: t('exerciseModalStart.body'),
-    ctaText: t('exerciseModalStart.cta'),
+    subject: '',
+    cta: t('exerciseModalStart.cta'),
     ctaAction: 'start',
-  }
-  const initialPath = {
-    type: '',
-    steps: [{ detailed: '' }] as {},
   }
 
   const [modalVisible, setModalVisible] = useState(false)
   const [modalContent, setModalContent] = useState(initialModalContent)
-  const [path, setPath] = useState(initialPath)
-  const [stepSubject, setStepSubject] = useState('')
 
   const user = useSelector(selectUser)
 
   useEffect(() => {
-    if (!path.type && user.path) {
-      setPath(getArtisticPath(user.path))
+    if (!modalContent.title.length && user.path) {
+      const pathStep = getArtisticPath(user.path).steps[user.step || 0]
 
       // TODO: add custom subject if practice path
-      setStepSubject(path.steps[user.step || 0]?.detailed || '')
+      setModalContent({
+        ...modalContent,
+        title: pathStep.summary || t('exerciseModalStart.title'),
+        subject: pathStep.detailed || '',
+      })
     }
   }, [user.path])
 
@@ -77,14 +77,16 @@ export default function Home() {
         setModalContent({
           ...modalContent,
           body: t('exerciseModalDo.body'),
-          ctaText: '',
+          cta: '',
         })
 
         // TODO: add a loading animation
         setTimeout(() => {
           setModalContent({
             ...modalContent,
-            ctaText: t('exerciseModalDo.cta'),
+            body: t('exerciseModalDone.body'),
+            subject: '',
+            cta: t('exerciseModalDone.cta'),
             ctaAction: 'done',
           })
         }, 4000)
@@ -98,18 +100,20 @@ export default function Home() {
     }
   }
 
-  if (!path.type) return
+  if (!modalContent.title.length) return
   return (
     <ScrollView>
       <View style={styles.mainContainer}>
         <AppModal
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
-          ctaText={modalContent.ctaText}
+          title={modalContent.title}
+          cta={modalContent.cta}
           onPressCta={onPressModalCta}
         >
           <AppText style={styles.modalText}>{modalContent.body}</AppText>
-          <AppText style={styles.modalText}>{stepSubject}</AppText>
+          <AppText style={styles.modalText}>{modalContent.subject}</AppText>
+          {/* <AppText style={styles.modalText}>{pathDetails}</AppText> */}
         </AppModal>
 
         <View style={styles.lineContainer}>
@@ -131,6 +135,7 @@ const styles = StyleSheet.create({
 
   modalText: {
     color: COLORS.white,
+    marginBottom: 10,
   },
 
   lineContainer: {

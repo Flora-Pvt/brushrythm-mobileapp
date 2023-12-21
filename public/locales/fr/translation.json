@@ -22,11 +22,15 @@
       },
 
       "exerciseModalStart": {
-        "body": "Commence ta session. Prends 25 minutes pour dessiner selon les objectifs que tu as définis.",
+        "title": "Exercice",
+        "body": "Commence ta session. Prends 25 minutes pour dessiner selon les objectifs suivants :",
         "cta": "C'est parti !"
       },
       "exerciseModalDo": {
-        "body": "Fais de ton mieux.",
+        "body": "Fais de ton mieux."
+      },
+      "exerciseModalDone": {
+        "body": "La session est finie. Tu peux maintenant prendre une pause ou enchainer avec une autre.",
         "cta": "J'ai fini"
       }
     },
@@ -38,24 +42,27 @@
         "steps": [
           {
             "summary": "1. Le personnage principal",
-            "detailed": "1. Dessiner le personnage principal (émotions, vêtements, corpulences, vêtements...)"
+            "detailed": "Dessine le personnage principal, par exemple expérimente avec ses émotions, des vêtements, les corpulences..."
           },
           {
             "summary": "2. L'univers (décors, véhicules...)",
-            "detailed": "2. Dessiner l'univers - décors, véhicules... (étudier codes et clichés qui permettent aux lecteurs d'identifier l'univers (études architecture, iconographie, costumes, ...))"
+            "detailed": "Dessine l'univers, par exemple en détaillant les décors, les véhicules... Tu peux étudier les codes et clichés qui permettent aux lecteurs d'identifier l'univers (études architecture, iconographie, costumes...)."
           },
           {
             "summary": "3. Les alliés et adversaires",
-            "detailed": "3. Dessiner les alliés et adversaires (émotions, vêtements, corpulences, vêtements...)"
+            "detailed": "Dessine les alliés et adversaires du personnage principal. De même que pour tout personnage, expérimente avec les émotions, vêtements, corpulences..."
           },
           {
             "summary": "4. Elaborer les planches",
-            "detailed": "4. Elaborer les planches (penser au cadrage, décor, positionnement des personnages (leur action et leur mentalité), bulles de dialogue et textes explicatifs encadrés)"
+            "detailed": "Elabore les planches. Garde en tête le cadrage, le décor, le positionnement des personnages (leur action et leur mentalité). Ajoute les bulles de dialogue et textes explicatifs encadrés."
           },
-          { "summary": "5. Crayonné", "detailed": "5. Crayonné" },
+          {
+            "summary": "5. Crayonné",
+            "detailed": "Entreprends le crayonné des planches pour être au plus proche du résultat final avant l'encrage, les couleurs et les ombres."
+          },
           {
             "summary": "6. Encrage, mise en couleur, ombrage",
-            "detailed": "6. Encrage, mise en couleur, ombrage"
+            "detailed": "C'est la touche finale, passe à l'encrage, la mise en couleur, et l'ombrage. C'est bientôt fini !"
           }
         ],
         "tips": "Conseil : passe au dessin après l'élaboration de l'idée (2-3 phrases), du synopsis (environ 4 pages - chronologique) et du séquencier (environ 15 pages - décrit scène par scène, pas de dialogue ou description longue, texte neutre)."
@@ -73,28 +80,28 @@
         "steps": [
           {
             "summary": "1. La lumière",
-            "detailed": "1. La lumière"
+            "detailed": "La lumière"
           },
           {
             "summary": "2. Les couleurs",
-            "detailed": "2. Les couleurs"
+            "detailed": "Les couleurs"
           },
           {
             "summary": "3. La composition",
-            "detailed": "3. La composition"
+            "detailed": "La composition"
           },
           {
             "summary": "4. La perspective",
-            "detailed": "4. La perspective"
+            "detailed": "La perspective"
           },
-          { "summary": "5. Les personnages", "detailed": "5. Les personnages" },
+          { "summary": "5. Les personnages", "detailed": "Les personnages" },
           {
             "summary": "6. Les poses dynamiques",
-            "detailed": "6. Les poses dynamiques"
+            "detailed": "Les poses dynamiques"
           },
           {
-            "summary": "6. La tête",
-            "detailed": "6. La tête"
+            "summary": "7. La tête",
+            "detailed": "La tête"
           }
         ],
         "tips": "Conseil : tu peux t'inspirer des sujets pour les exercices."

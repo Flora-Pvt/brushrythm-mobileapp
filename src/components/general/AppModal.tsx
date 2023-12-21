@@ -1,6 +1,7 @@
 import React from 'react'
 import { ModalProps, Modal, Pressable, View, StyleSheet } from 'react-native'
 import AppButton from './AppButton'
+import AppText from './AppText'
 import { COLORS } from 'utils/constants'
 
 export default function AppModal({
@@ -8,8 +9,9 @@ export default function AppModal({
   setModalVisible,
   animationType = 'fade' as ModalProps['animationType'],
   containerStyle = {},
+  title = '',
   children,
-  ctaText,
+  cta = '',
   onPressCta = (data) => {},
 }) {
   const closeIfPressOutside = (event) => {
@@ -37,11 +39,15 @@ export default function AppModal({
         onPress={closeIfPressOutside}
       >
         <View id="modalInner" style={styles.modal}>
+          {title.length ? (
+            <AppText style={styles.title}>{title}</AppText>
+          ) : null}
+
           {children}
 
-          {ctaText ? (
+          {cta.length ? (
             <AppButton
-              text={ctaText}
+              text={cta}
               customStyles={styles.button}
               onPress={onPressCta}
             />
@@ -65,7 +71,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 40,
     paddingVertical: 30,
-    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -74,6 +79,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  title: {
+    color: COLORS.white,
+    fontSize: 18,
+    marginBottom: 20,
   },
   button: {
     width: 200,

@@ -22,11 +22,15 @@
       },
 
       "exerciseModalStart": {
+        "title": "Practice",
         "body": "Start your session. Take 25 minutes to draw according to the objectives you have defined.",
         "cta": "Let's go!"
       },
       "exerciseModalDo": {
-        "body": "Do your best.",
+        "body": "Do your best."
+      },
+      "exerciseModalDone": {
+        "body": "Session is over. Take a break or do another one.",
         "cta": "I'm done"
       }
     },
@@ -38,24 +42,27 @@
         "steps": [
           {
             "summary": "1. The main character",
-            "detailed": "1. Draw the main character (emotions, clothes, body shape, clothing...)"
+            "detailed": "Draw the main character, for example focus on emotions, clothes, body shape..."
           },
           {
             "summary": "2. The universe (sets, vehicles...)",
-            "detailed": "2. Draw the universe - sets, vehicles... (study codes and clichés which allow readers to identify the universe (architecture studies, iconography, costumes, ...))"
+            "detailed": "Draw the universe, for example focus on sets, vehicles... You can study codes and clichés which allow readers to identify the universe (architecture studies, iconography, costumes...)."
           },
           {
             "summary": "3. Allies and adversaries",
-            "detailed": "3. Draw allies and adversaries (emotions, clothing, body shapes, clothing...)"
+            "detailed": "Draw allies and adversaries. As with all characters you can focus on emotions, clothes, body shapes..."
           },
           {
             "summary": "4. The storyboard",
-            "detailed": "4. The storyboard (think about the framing, setting, positioning of the characters (their action and their mentality), dialogue bubbles and framed explanatory texts)"
+            "detailed": "Develop the storyboard. Keep in mind the framing, the setting, the positioning of the characters (their action and their mentality). Adds dialog bubbles and framed explanatory texts."
           },
-          { "summary": "5. Line work", "detailed": "5. Line work" },
+          {
+            "summary": "5. Line work",
+            "detailed": "Start sketching the boards to get as close as possible to the final result before ink, colors and shadows."
+          },
           {
             "summary": "6. Inking, coloring, shading",
-            "detailed": "6. Inking, coloring, shading"
+            "detailed": "This is the final touch, moving on to inking, coloring, and shading. It's almost finished !"
           }
         ],
         "tips": "Tip: move on to drawing after developing the idea (2-3 sentences), the synopsis (around 4 pages - chronological) and the sequencer (around 15 pages - described scene by scene, no dialogue or long description, neutral text)."
@@ -73,28 +80,28 @@
         "steps": [
           {
             "summary": "1. Light",
-            "detailed": "1. Light"
+            "detailed": "Light"
           },
           {
             "summary": "2. Colors",
-            "detailed": "2. Colors"
+            "detailed": "Colors"
           },
           {
             "summary": "3. Composition",
-            "detailed": "3. Composition"
+            "detailed": "Composition"
           },
           {
             "summary": "4. Perspective",
-            "detailed": "4. Perspective"
+            "detailed": "Perspective"
           },
-          { "summary": "5. Characters", "detailed": "5. Characters" },
+          { "summary": "5. Characters", "detailed": "Characters" },
           {
             "summary": "6. Dynamic poses",
-            "detailed": "6. Dynamic poses"
+            "detailed": "Dynamic poses"
           },
           {
             "summary": "6. Head",
-            "detailed": "6. Head"
+            "detailed": "Head"
           }
         ],
         "tips": "Tip: you can pick these subjects for the exercises."

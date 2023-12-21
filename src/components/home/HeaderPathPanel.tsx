@@ -74,6 +74,7 @@ export default function HeaderPathPanel({
     setPanelVisible(false)
   }
 
+  if (!selectedPath.type.length) return
   return (
     <View
       style={{
@@ -125,7 +126,7 @@ export default function HeaderPathPanel({
         modalVisible={confirmModalVisible}
         setModalVisible={setConfirmModalVisible}
         containerStyle={styles.confirmModalContainer}
-        ctaText={t('home.headerConfirmPathModal.cta')}
+        cta={t('home.headerConfirmPathModal.cta')}
         onPressCta={confirmNewPath}
       >
         <AppText style={{ color: COLORS.white }}>
