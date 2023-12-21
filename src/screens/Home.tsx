@@ -92,6 +92,7 @@ export default function Home() {
     }
   }
 
+  if (!path.type) return
   return (
     <ScrollView>
       <View style={styles.mainContainer}>

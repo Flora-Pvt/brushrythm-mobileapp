@@ -6,8 +6,9 @@ import AppText from 'components/general/AppText'
 
 import { useTranslation } from 'react-i18next'
 
-import { useSelector } from 'react-redux'
-import { selectUser } from 'features/user/userSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { ThunkDispatch } from '@reduxjs/toolkit'
+import { selectUser, updateUser } from 'features/user/userSlice'
 
 import { COLORS } from 'utils/constants'
 import { artisticPaths, getArtisticPath } from 'utils/paths'
@@ -20,6 +21,8 @@ export default function HeaderModal({
   setHeaderPathIcon = (pathType) => {},
 }) {
   const { t } = useTranslation('translation')
+
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 
   const [selectedPath, setSelectedPath] = useState({
     type: '',
@@ -43,11 +46,13 @@ export default function HeaderModal({
   const resetPath = async (pathType) => {
     const today = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss')
 
-    await axios.patch(`/users/${user.id}`, {
+    const updates = {
       path: pathType,
       last_exercise_date: today,
-      exercises_completed: JSON.stringify([]),
-    })
+      exercises_completed: JSON.stringify([0]),
+    }
+
+    dispatch(updateUser({ id: user.id, updates: updates }))
   }
 
   const onSeePath = (pathType) => {
@@ -66,7 +71,7 @@ export default function HeaderModal({
     }
 
     // TODO: get status and display toaster if error
-    // TODO: alert that steps will be reset
+    // TODO: alert that steps will be reset (when done allow reset if same path)
     resetPath(pathType)
     setHeaderPathIcon(() => selectedPath.icon)
     setModalVisible(false)

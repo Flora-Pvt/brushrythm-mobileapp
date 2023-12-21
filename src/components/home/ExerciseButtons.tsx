@@ -12,7 +12,7 @@ export default function ExerciseButtons({
   const user = useSelector(selectUser)
 
   const numberOfDays = 7
-  const buttons = []
+  let buttons = []
 
   // TODO: find a better algorithm
   const btnPositions = [0, 48, 96, 48, 0, -48, 0]
@@ -42,22 +42,27 @@ export default function ExerciseButtons({
     }
   }
 
-  for (let i = 0; i < numberOfDays; i++) {
-    let isActiveDay = i === user.exercises_completed?.length - 1
-    if (!user.exercises_completed?.length) isActiveDay = i === 0
+  const generateButtons = () => {
+    buttons = []
 
-    buttons.push(
-      <Pressable
-        key={`exercise-btn-${i}`}
-        disabled={!isActiveDay}
-        style={{ ...styles.step, ...getButtonStyle(i, isActiveDay) }}
-        onPress={() => setModalVisible(true)}
-      >
-        {/* TODO: add emojis depending on the exercises completed that day */}
-      </Pressable>
-    )
+    for (let i = 0; i < numberOfDays; i++) {
+      let isActiveDay = i === user.exercises_completed?.length - 1
+      if (!user.exercises_completed?.length) isActiveDay = i === 0
+
+      buttons.push(
+        <Pressable
+          key={`exercise-btn-${i}`}
+          disabled={!isActiveDay}
+          style={{ ...styles.step, ...getButtonStyle(i, isActiveDay) }}
+          onPress={() => setModalVisible(true)}
+        >
+          {/* TODO: add emojis depending on the exercises completed that day */}
+        </Pressable>
+      )
+    }
   }
 
+  generateButtons()
   return buttons
 }
 

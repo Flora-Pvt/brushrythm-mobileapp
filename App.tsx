@@ -32,6 +32,8 @@ const App = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'app' })
 
   const checkUserCredentialsInStorage = async () => {
+    if (isLoaded) return
+
     const token = await getStringData('token')
     const userId = await getStringData('userId')
 

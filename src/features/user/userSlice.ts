@@ -30,6 +30,20 @@ export const logUser = createAsyncThunk(
   }
 )
 
+export const updateUser = createAsyncThunk(
+  'user/updateUser',
+  async (payload: { id; updates }) => {
+    const { id, updates } = payload
+
+    await axios.patch(`/users/${id}`, updates)
+
+    if (updates.exercises_completed) {
+      updates.exercises_completed = JSON.parse(updates.exercises_completed)
+    }
+    return updates
+  }
+)
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -47,9 +61,22 @@ export const userSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message
       })
+      .addCase(updateUser.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.value = { ...state.value, ...action.payload }
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
   },
 })
 
 export const selectUser = (state) => state.user.value
+export const selectUserStatus = (state) => state.user.status
+export const selectUserError = (state) => state.user.error
 
 export default userSlice.reducer
