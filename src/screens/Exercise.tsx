@@ -123,11 +123,13 @@ export default function Exercise({ navigation }) {
       )}
 
       {content.cta.length > 0 && (
-        <AppButton
-          text={content.cta}
-          customStyles={styles.button}
-          onPress={showNextStep}
-        />
+        <View style={styles.buttonContainer}>
+          <AppButton
+            text={content.cta}
+            customStyles={styles.button}
+            onPress={showNextStep}
+          />
+        </View>
       )}
     </View>
   )
@@ -158,8 +160,10 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 
+  buttonContainer: {
+    alignItems: 'center',
+  },
   button: {
     width: 200,
-    marginHorizontal: 'auto',
   },
 })
