@@ -129,9 +129,7 @@ export default function HeaderPathPanel({
         cta={t('home.headerConfirmPathModal.cta')}
         onPressCta={confirmNewPath}
       >
-        <AppText style={{ color: COLORS.white }}>
-          {t('home.headerConfirmPathModal.body')}
-        </AppText>
+        <AppText>{t('home.headerConfirmPathModal.body')}</AppText>
       </AppModal>
     </View>
   )
@@ -162,16 +160,13 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   pathTitle: {
-    color: COLORS.white,
     fontSize: 16,
     marginVertical: 20,
   },
   pathContent: {
-    color: COLORS.white,
     marginBottom: 5,
   },
   pathTips: {
-    color: COLORS.white,
     fontSize: 12,
     marginTop: 20,
   },

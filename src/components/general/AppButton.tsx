@@ -17,7 +17,7 @@ export default function AppButton({
       disabled={disabled}
       onPress={onPress}
     >
-      <AppText> {text}</AppText>
+      <AppText style={styles.text}>{text}</AppText>
     </Pressable>
   )
 }
@@ -31,5 +31,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  text: {
+    color: COLORS.secondary,
   },
 })

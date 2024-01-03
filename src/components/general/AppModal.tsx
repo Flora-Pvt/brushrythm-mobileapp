@@ -15,13 +15,11 @@ export default function AppModal({
   onPressCta = (data) => {},
 }) {
   const closeIfPressOutside = (event) => {
-    let isPressOnModal = false
-
     if (event.target.closest) {
-      isPressOnModal = event.target.closest('#modalInner')
+      let isPressOnModal = event.target.closest('#modalInner')
+      if (isPressOnModal) return
     }
 
-    if (isPressOnModal) return
     setModalVisible(false)
   }
 
@@ -81,7 +79,6 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   title: {
-    color: COLORS.white,
     fontSize: 18,
     marginBottom: 20,
   },

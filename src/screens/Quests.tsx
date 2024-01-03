@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
   },
   questsType: {
     fontSize: 20,
-    color: COLORS.white,
     marginTop: 12,
     marginBottom: 5,
   },

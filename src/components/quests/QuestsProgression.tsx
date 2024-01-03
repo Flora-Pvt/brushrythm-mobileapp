@@ -26,6 +26,8 @@ export default function QuestsProgression() {
   const user = useSelector(selectUser)
   const questsLeft = daysInMonth - (user.quests?.completed || 0)
 
+  // TODO: calculate progress bar percentage
+
   return (
     <View style={styles.progressContainer}>
       <View style={styles.badgeContainer}>
@@ -81,6 +83,7 @@ const styles = StyleSheet.create({
   month: {
     fontSize: 24,
     marginBottom: 5,
+    color: COLORS.secondaryLight,
   },
 
   daysLeftContainer: {
@@ -89,6 +92,7 @@ const styles = StyleSheet.create({
   },
   daysLeft: {
     fontSize: 13,
+    color: COLORS.secondaryLight,
   },
 
   completeContainer: {

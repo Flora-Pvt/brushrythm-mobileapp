@@ -48,12 +48,14 @@ export default function Header({ navigation }) {
 
         <View style={styles.userInfo}>
           <Timeline color={iconsColor} />
-          <AppText>{user?.experience || 0} XP</AppText>
+          <AppText style={styles.secondaryColor}>
+            {user?.experience || 0} XP
+          </AppText>
         </View>
 
         <View style={styles.userInfo}>
           <Infinite color={iconsColor} />
-          <AppText> {user?.streak || 0}</AppText>
+          <AppText style={styles.secondaryColor}> {user?.streak || 0}</AppText>
         </View>
 
         <Pressable
@@ -61,7 +63,7 @@ export default function Header({ navigation }) {
           onPress={() => navigation.navigate('Store')}
         >
           <Gem color={iconsColor} />
-          <AppText>{user?.gems || 0}</AppText>
+          <AppText style={styles.secondaryColor}>{user?.gems || 0}</AppText>
         </Pressable>
       </View>
     </View>
@@ -81,6 +83,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
+  },
+
+  secondaryColor: {
+    color: COLORS.secondary,
   },
 
   iconPathContainer: {

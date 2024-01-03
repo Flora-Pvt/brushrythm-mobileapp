@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
     gap: 30,
   },
   signupLink: {
-    color: COLORS.white,
     fontSize: 12,
     textAlign: 'right',
     fontFamily: 'Inter_400Regular',

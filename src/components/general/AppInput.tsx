@@ -6,6 +6,7 @@ import { useFonts, Inter_400Regular } from '@expo-google-fonts/inter'
 
 import { COLORS } from 'utils/constants'
 
+/** TODO: set up characters limit */
 export default function AppInput({
   label = 'label',
   placeholder = '',
@@ -18,6 +19,7 @@ export default function AppInput({
   const [fontsLoaded] = useFonts({ Inter_400Regular })
   if (!fontsLoaded) return
 
+  // TODO: hide value if key is password
   return (
     <View>
       <AppText style={styles.label}>{label}</AppText>
@@ -37,7 +39,6 @@ export default function AppInput({
 
 const styles = StyleSheet.create({
   label: {
-    color: COLORS.white,
     marginBottom: 8,
   },
   input: {

@@ -19,7 +19,7 @@ export default function AppText(props) {
 
 const styles = StyleSheet.create({
   text: {
-    color: COLORS.secondary,
+    color: COLORS.white,
     fontFamily: 'Inter_500Medium',
     fontSize: 14,
   },
