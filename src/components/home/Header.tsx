@@ -28,22 +28,13 @@ export default function Header({ navigation }) {
   }, [user.path])
 
   return (
-    <View>
-      <HeaderPathPanel
-        panelVisible={panelVisible}
-        setPanelVisible={setPanelVisible}
-        headerHeight={headerHeight}
-        setHeaderPathIcon={setHeaderPathIcon}
-      />
-
+    <>
       <View style={styles.header}>
         <Pressable
-          style={styles.userInfo}
+          style={styles.iconPathContainer}
           onPress={() => setPanelVisible(!panelVisible)}
         >
-          <View style={styles.iconPathContainer}>
-            {HeaderPathIcon && <HeaderPathIcon color={iconsColor} />}
-          </View>
+          {HeaderPathIcon && <HeaderPathIcon color={iconsColor} />}
         </Pressable>
 
         <View style={styles.userInfo}>
@@ -66,23 +57,30 @@ export default function Header({ navigation }) {
           <AppText style={styles.secondaryColor}>{user?.gems || 0}</AppText>
         </Pressable>
       </View>
-    </View>
+
+      <HeaderPathPanel
+        panelVisible={panelVisible}
+        setPanelVisible={setPanelVisible}
+        headerHeight={headerHeight}
+        setHeaderPathIcon={setHeaderPathIcon}
+      />
+    </>
   )
 }
 
 const styles = StyleSheet.create({
   header: {
     paddingLeft: 12,
-    paddingVertical: 16,
+    marginTop: 'auto',
+    marginBottom: 10,
     flexDirection: 'row',
     gap: 32,
-    height: headerHeight,
   },
 
   userInfo: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    columnGap: 4,
   },
 
   secondaryColor: {
@@ -94,5 +92,9 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderRadius: 12,
     padding: 4,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
