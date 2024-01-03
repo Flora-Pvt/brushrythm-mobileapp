@@ -6,10 +6,7 @@ import { useSelector } from 'react-redux'
 import { selectUser } from 'features/user/userSlice'
 import { AwardStar, EmptyStar } from 'utils/svg-images'
 
-export default function ExerciseButtons({
-  setModalVisible = (state) => {},
-  children = null,
-}) {
+export default function ExerciseButtons({ onPress = () => {} }) {
   const user = useSelector(selectUser)
 
   const numberOfDays = 7
@@ -52,6 +49,7 @@ export default function ExerciseButtons({
   const generateButtons = () => {
     buttons = []
 
+    if (!user.exercises_completed) return
     for (let i = 0; i < numberOfDays; i++) {
       let isActiveDay = i === user.exercises_completed?.length - 1
       if (!user.exercises_completed?.length) isActiveDay = i === 0
@@ -61,7 +59,7 @@ export default function ExerciseButtons({
           key={`exercise-btn-${i}`}
           disabled={!isActiveDay}
           style={{ ...styles.step, ...getButtonStyle(i, isActiveDay) }}
-          onPress={() => setModalVisible(true)}
+          onPress={onPress}
         >
           {isActiveDay ? getButtonEmoji(i) : null}
         </Pressable>

@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import BottomTabNavigator from 'layouts/BottomTabNavigator'
 import StoreScreen from 'screens/Store'
+import ExerciseScreen from 'screens/Exercise'
 
 import { COLORS } from 'utils/constants'
 
@@ -27,9 +28,20 @@ export default function Main() {
           name="Store"
           component={StoreScreen}
           options={{
-            headerStyle: styles.storeHeader,
+            headerStyle: styles.basicHeader,
             headerTitle: t('store.title'),
-            headerTitleStyle: styles.storeHeaderTitle,
+            headerTitleStyle: styles.basicHeaderTitle,
+            headerTintColor: COLORS.white,
+            headerTitleAlign: 'center',
+          }}
+        />
+        <Stack.Screen
+          name="Exercise"
+          component={ExerciseScreen}
+          options={{
+            headerStyle: styles.basicHeader,
+            headerTitle: t('exercise.title'),
+            headerTitleStyle: styles.basicHeaderTitle,
             headerTintColor: COLORS.white,
             headerTitleAlign: 'center',
           }}
@@ -40,11 +52,11 @@ export default function Main() {
 }
 
 const styles = StyleSheet.create({
-  storeHeader: {
+  basicHeader: {
     backgroundColor: COLORS.secondaryLight,
     borderBottomWidth: 0,
   },
-  storeHeaderTitle: {
+  basicHeaderTitle: {
     fontSize: 24,
   },
 })

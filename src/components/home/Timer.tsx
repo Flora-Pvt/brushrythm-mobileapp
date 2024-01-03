@@ -7,24 +7,16 @@ export default function Timer({ timeLimit = 60 * 15 }) {
   const [timeLeft, setTimeLeft] = useState(timeLimit)
 
   useEffect(() => {
-    startTimerInterval()
-    clearTimerInterval()
-  }, [timeLeft])
-
-  const startTimerInterval = () => {
     timerInterval = setInterval(() => {
       if (timeLeft <= 0) {
-        clearInterval(timerInterval)
-        return
+        return () => clearInterval(timerInterval)
       }
 
       setTimeLeft(timeLeft - 1)
     }, 1000)
-  }
 
-  const clearTimerInterval = () => {
     return () => clearInterval(timerInterval)
-  }
+  }, [timeLeft])
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60)
@@ -37,5 +29,5 @@ export default function Timer({ timeLimit = 60 * 15 }) {
     return `${minutes}:${seconds}`
   }
 
-  return <AppText id="base-timer-label">{formatTime(timeLeft)}</AppText>
+  return <AppText style={{ fontSize: 19 }}>{formatTime(timeLeft)}</AppText>
 }

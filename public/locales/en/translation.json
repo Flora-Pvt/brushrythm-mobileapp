@@ -19,19 +19,6 @@
       "headerConfirmPathModal": {
         "body": "By choosing a new path, all the exercises completed will be reset to zero. Do you agree?",
         "cta": "I accept"
-      },
-
-      "exerciseModalStart": {
-        "title": "Practice",
-        "body": "Start your session. Take 25 minutes to draw according to the objectives you have defined.",
-        "cta": "Let's go!"
-      },
-      "exerciseModalDo": {
-        "body": "Do your best."
-      },
-      "exerciseModalDone": {
-        "body": "Session is over. Take a break or do another one.",
-        "cta": "I'm done"
       }
     },
 
@@ -129,6 +116,21 @@
 
       "breaks": "Breaks",
       "streakBreaks": "Streak breaks"
+    },
+
+    "exercise": {
+      "title": "Exercise",
+      "remainingTime": "Remaining time:",
+
+      "start": {
+        "title": "Practice",
+        "body": "Start your session. Take the time allotted to draw according to the objectives you have defined.",
+        "cta": "Let's go!"
+      },
+      "done": {
+        "body": "Congratulations! You have completed a session, you can now rest or continue drawing.",
+        "cta": "Go back to the home page"
+      }
     },
 
     "common": {

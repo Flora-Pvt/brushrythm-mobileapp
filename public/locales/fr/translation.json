@@ -19,19 +19,6 @@
       "headerConfirmPathModal": {
         "body": "En choisissant un nouveau parcours, tous les exercices effectués seront remis à zéro. Es-tu d'accord ?",
         "cta": "J'accepte"
-      },
-
-      "exerciseModalStart": {
-        "title": "Exercice",
-        "body": "Commence ta session. Prends 25 minutes pour dessiner selon les objectifs suivants :",
-        "cta": "C'est parti !"
-      },
-      "exerciseModalDo": {
-        "body": "Fais de ton mieux."
-      },
-      "exerciseModalDone": {
-        "body": "La session est finie. Tu peux maintenant prendre une pause ou enchainer avec une autre.",
-        "cta": "J'ai fini"
       }
     },
 
@@ -130,6 +117,22 @@
 
       "breaks": "Pause",
       "streakBreaks": "Pause de série"
+    },
+
+    "exercise": {
+      "title": "Exercice",
+      "remainingTime": "Temps restant : ",
+
+      "start": {
+        "title": "Exercice",
+        "body": "Commence ta session. Prends le temps imparti pour dessiner selon les objectifs suivants :",
+        "cta": "C'est parti !"
+      },
+
+      "done": {
+        "body": "Félicitations ! Tu as terminé une session, tu peux maintenant te reposer ou continuer à dessiner.",
+        "cta": "Retour à l'écran principal"
+      }
     },
 
     "common": {
